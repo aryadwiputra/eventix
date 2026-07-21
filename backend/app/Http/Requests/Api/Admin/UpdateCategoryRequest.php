@@ -8,7 +8,7 @@ class UpdateCategoryRequest extends FormRequest
 {
     public function rules(): array
     {
-        $categoryId = $this->route('category');
+        $categoryId = $this->route('category')?->getKey() ?? $this->route('category');
 
         return [
             'name' => ['sometimes', 'string', 'min:2', 'max:255', 'unique:categories,name,' . $categoryId],
