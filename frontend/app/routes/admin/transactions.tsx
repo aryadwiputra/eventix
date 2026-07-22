@@ -4,6 +4,7 @@ import { Button } from "~/components/ui/button";
 import { Badge } from "~/components/ui/badge";
 import { Select } from "~/components/ui/select";
 import api from "~/lib/api";
+import { useTranslation } from "react-i18next";
 
 const statusColors: Record<string, string> = {
   paid: "bg-green-500/10 text-green-400 border-green-500/20",
@@ -14,6 +15,7 @@ const statusColors: Record<string, string> = {
 };
 
 export default function AdminTransactions() {
+  const { t } = useTranslation();
   const [txs, setTxs] = useState<any[]>([]);
   const [statusFilter, setStatusFilter] = useState("");
 
@@ -30,8 +32,8 @@ export default function AdminTransactions() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Transactions</h1>
-        <p className="text-iron-grey text-sm mt-1">All transactions across events</p>
+        <h1 className="text-2xl font-bold">{t("admin.transactions.title")}</h1>
+        <p className="text-iron-grey text-sm mt-1">{t("admin.transactions.subtitle")}</p>
       </div>
 
       <div className="flex gap-3">
@@ -40,12 +42,12 @@ export default function AdminTransactions() {
           onChange={(e) => setStatusFilter(e.target.value)}
           className="rounded-xl bg-primary border border-bluish-purple px-4 py-2.5 text-sm text-white focus:border-secondary focus:outline-none"
         >
-          <option value="">All Status</option>
-          <option value="pending">Pending</option>
-          <option value="paid">Paid</option>
-          <option value="expired">Expired</option>
-          <option value="cancelled">Cancelled</option>
-          <option value="failed">Failed</option>
+          <option value="">{t("admin.transactions.all")}</option>
+          <option value="pending">{t("common.status.pending")}</option>
+          <option value="paid">{t("common.status.paid")}</option>
+          <option value="expired">{t("common.status.expired")}</option>
+          <option value="cancelled">{t("common.status.cancelled")}</option>
+          <option value="failed">{t("common.status.failed")}</option>
         </select>
       </div>
 
@@ -54,18 +56,18 @@ export default function AdminTransactions() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-bluish-purple text-left text-iron-grey">
-                <th className="p-4 font-medium">Code</th>
-                <th className="p-4 font-medium">Name</th>
-                <th className="p-4 font-medium">Event</th>
-                <th className="p-4 font-medium">Amount</th>
-                <th className="p-4 font-medium">Status</th>
-                <th className="p-4 font-medium">Date</th>
-                <th className="p-4 font-medium text-right">Actions</th>
+                <th className="p-4 font-medium">{t("admin.transactions.code")}</th>
+                <th className="p-4 font-medium">{t("admin.transactions.name")}</th>
+                <th className="p-4 font-medium">{t("admin.transactions.event")}</th>
+                <th className="p-4 font-medium">{t("admin.transactions.amount")}</th>
+                <th className="p-4 font-medium">{t("admin.transactions.status")}</th>
+                <th className="p-4 font-medium">{t("admin.transactions.date")}</th>
+                <th className="p-4 font-medium text-right">{t("admin.transactions.actions")}</th>
               </tr>
             </thead>
             <tbody>
               {txs.length === 0 ? (
-                <tr><td colSpan={7} className="p-4 text-center text-iron-grey">No transactions</td></tr>
+                <tr><td colSpan={7} className="p-4 text-center text-iron-grey">{t("admin.transactions.noData")}</td></tr>
               ) : txs.map((tx: any) => (
                 <tr key={tx.id} className="border-b border-bluish-purple/50">
                   <td className="p-4 font-mono text-xs">{tx.code}</td>
@@ -73,14 +75,14 @@ export default function AdminTransactions() {
                   <td className="p-4 text-iron-grey">{tx.event?.name ?? "-"}</td>
                   <td className="p-4">Rp {(tx.total_amount ?? 0).toLocaleString("id-ID")}</td>
                   <td className="p-4">
-                    <Badge variant="outline" className={statusColors[tx.status] ?? ""}>{tx.status}</Badge>
+                    <Badge variant="outline" className={statusColors[tx.status] ?? ""}>{t("common.status." + tx.status)}</Badge>
                   </td>
                   <td className="p-4 text-xs text-iron-grey">{tx.created_at?.slice(0, 10)}</td>
                   <td className="p-4 text-right">
                     {tx.status === "pending" && (
                       <div className="flex gap-1 justify-end">
-                        <button onClick={() => updateStatus(tx.id, "paid")} className="px-2 py-1 rounded-lg bg-green-500/10 text-green-400 text-xs hover:bg-green-500/20">Approve</button>
-                        <button onClick={() => updateStatus(tx.id, "expired")} className="px-2 py-1 rounded-lg bg-red-500/10 text-red-400 text-xs hover:bg-red-500/20">Expire</button>
+                        <button onClick={() => updateStatus(tx.id, "paid")} className="px-2 py-1 rounded-lg bg-green-500/10 text-green-400 text-xs hover:bg-green-500/20">{t("admin.transactions.approve")}</button>
+                        <button onClick={() => updateStatus(tx.id, "expired")} className="px-2 py-1 rounded-lg bg-red-500/10 text-red-400 text-xs hover:bg-red-500/20">{t("admin.transactions.expire")}</button>
                       </div>
                     )}
                   </td>

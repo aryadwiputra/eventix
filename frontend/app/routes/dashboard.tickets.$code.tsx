@@ -5,6 +5,8 @@ import { ArrowLeft, MapPin, Calendar, CheckCircle, XCircle } from "lucide-react"
 import { QRCodeSVG } from "qrcode.react";
 import { Button } from "~/components/ui/button";
 import api from "~/lib/api";
+import i18n from "~/lib/i18n";
+import { useTranslation } from "react-i18next";
 
 interface TicketDetail {
   id: number;
@@ -29,6 +31,7 @@ export default function TicketDetailPage() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const [ticket, setTicket] = useState<TicketDetail | null>(null);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -44,7 +47,7 @@ export default function TicketDetailPage() {
   if (loading) {
     return (
       <div className="min-h-[calc(100vh-80px)] flex items-center justify-center">
-        <div className="text-iron-grey">Loading...</div>
+        <div className="text-iron-grey">{t("common.loading")}</div>
       </div>
     );
   }
@@ -53,9 +56,9 @@ export default function TicketDetailPage() {
     return (
       <div className="min-h-[calc(100vh-80px)] flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold mb-2">Ticket Not Found</h2>
+          <h2 className="text-2xl font-bold mb-2">{t("tickets.notFound")}</h2>
           <Link to="/dashboard/tickets" className="text-secondary hover:underline">
-            Back to My Tickets
+            {t("tickets.detail.back")}
           </Link>
         </div>
       </div>
@@ -73,7 +76,7 @@ export default function TicketDetailPage() {
           className="inline-flex items-center gap-2 text-iron-grey hover:text-white transition-colors mb-6"
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to My Tickets
+          {t("tickets.detail.back")}
         </Link>
 
         <div className="grid lg:grid-cols-5 gap-8">
@@ -94,12 +97,12 @@ export default function TicketDetailPage() {
               )}
               <div>
                 <p className="font-semibold">
-                  {ticket.is_redeemed ? "Ticket Used" : "Active Ticket"}
+                  {ticket.is_redeemed ? t("tickets.detail.usedTitle") : t("tickets.detail.activeTitle")}
                 </p>
                 <p className="text-sm opacity-80">
-                  {ticket.is_redeemed
-                    ? `Redeemed at ${ticket.redeemed_at ? new Date(ticket.redeemed_at).toLocaleString("id-ID") : "-"}`
-                    : "Show this QR code at the entrance"}
+                    {ticket.is_redeemed
+                      ? t("tickets.detail.usedDesc", { time: ticket.redeemed_at ? new Date(ticket.redeemed_at).toLocaleString(i18n.language) : "-" })
+                      : t("tickets.detail.activeDesc")}
                 </p>
               </div>
             </div>
@@ -110,20 +113,20 @@ export default function TicketDetailPage() {
 
               <div className="grid grid-cols-2 gap-4 mb-4">
                 <div>
-                  <p className="text-xs text-pastel-purple mb-1">Ticket Type</p>
+                  <p className="text-xs text-pastel-purple mb-1">{t("tickets.detail.ticketType")}</p>
                   <p className="font-semibold">
                     {ticket.transaction_item.ticket.name}
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs text-pastel-purple mb-1">Ticket Code</p>
+                  <p className="text-xs text-pastel-purple mb-1">{t("tickets.detail.ticketCode")}</p>
                   <p className="font-mono font-semibold text-secondary">{ticket.code}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-pastel-purple mb-1">Date</p>
+                  <p className="text-xs text-pastel-purple mb-1">{t("tickets.detail.date")}</p>
                   <p className="font-semibold flex items-center gap-1">
                     <Calendar className="w-4 h-4 text-secondary" />
-                    {startDate.toLocaleDateString("id-ID", {
+                    {startDate.toLocaleDateString(i18n.language, {
                       weekday: "long",
                       year: "numeric",
                       month: "long",
@@ -133,7 +136,7 @@ export default function TicketDetailPage() {
                 </div>
                 {event.location && (
                   <div>
-                    <p className="text-xs text-pastel-purple mb-1">Location</p>
+                    <p className="text-xs text-pastel-purple mb-1">{t("tickets.detail.location")}</p>
                     <p className="font-semibold flex items-center gap-1">
                       <MapPin className="w-4 h-4 text-secondary" />
                       {event.location}
@@ -143,7 +146,7 @@ export default function TicketDetailPage() {
               </div>
 
               <div className="border-t border-bluish-purple pt-4">
-                <p className="text-xs text-pastel-purple mb-1">Transaction</p>
+                <p className="text-xs text-pastel-purple mb-1">{t("tickets.detail.transaction")}</p>
                 <p className="font-mono text-sm">
                   {ticket.transaction_item.transaction.code}
                 </p>
@@ -154,7 +157,7 @@ export default function TicketDetailPage() {
           {/* Right: QR Code */}
           <div className="lg:col-span-2">
             <div className="sticky top-24 rounded-2xl bg-primary p-8 text-center">
-              <h3 className="font-bold mb-6">Your QR Code</h3>
+              <h3 className="font-bold mb-6">{t("tickets.detail.qrTitle")}</h3>
               <div className="bg-white rounded-xl p-4 inline-block mx-auto mb-4">
                 <QRCodeSVG
                   value={`TICKETY:${ticket.code}`}
@@ -163,12 +166,12 @@ export default function TicketDetailPage() {
                 />
               </div>
               <p className="text-sm text-iron-grey">
-                Show this code to the event staff for check-in
+                {t("tickets.detail.qrDesc")}
               </p>
               <div className="mt-6">
                 <Link to={`/events/${event.id}`}>
                   <Button variant="outline" className="w-full">
-                    View Event Details
+                    {t("tickets.detail.viewEvent")}
                   </Button>
                 </Link>
               </div>

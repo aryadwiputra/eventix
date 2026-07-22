@@ -4,6 +4,8 @@ import { MapPin, Clock, Calendar, Monitor, Minus, Plus, ArrowLeft } from "lucide
 import { Button } from "~/components/ui/button";
 import { useAuthStore } from "~/stores/auth";
 import api from "~/lib/api";
+import { useTranslation } from "react-i18next";
+import i18n from "~/lib/i18n";
 
 interface TicketType {
   id: number;
@@ -34,15 +36,16 @@ interface EventData {
 }
 
 function fmtDate(d: Date) {
-  const months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
-  return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+  const locale = i18n.language === "id" ? "id-ID" : "en-US";
+  return d.toLocaleDateString(locale, { day: "numeric", month: "short", year: "numeric" });
 }
 
 function fmtTime(d: Date) {
-  return `${d.getHours().toString().padStart(2, "0")}:${d.getMinutes().toString().padStart(2, "0")}`;
+  return d.toLocaleTimeString(i18n.language === "id" ? "id-ID" : "en-US", { hour: "2-digit", minute: "2-digit" });
 }
 
 export default function EventDetailPage() {
+  const { t } = useTranslation();
   const { eventId } = useParams();
   const navigate = useNavigate();
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
@@ -60,7 +63,7 @@ export default function EventDetailPage() {
   if (loading) {
     return (
       <div className="min-h-[calc(100vh-80px)] flex items-center justify-center">
-        <div className="text-iron-grey">Loading...</div>
+        <div className="text-iron-grey">{t("common.loading")}</div>
       </div>
     );
   }
@@ -69,8 +72,8 @@ export default function EventDetailPage() {
     return (
       <div className="min-h-[calc(100vh-80px)] flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold mb-2">Event Not Found</h2>
-          <Link to="/" className="text-secondary hover:underline">Back to Home</Link>
+          <h2 className="text-2xl font-bold mb-2">{t("event.notFound")}</h2>
+          <Link to="/" className="text-secondary hover:underline">{t("event.backHome")}</Link>
         </div>
       </div>
     );
@@ -104,7 +107,7 @@ export default function EventDetailPage() {
       <div className="max-w-screen-xl mx-auto px-6 py-8">
         <Link to="/" className="inline-flex items-center gap-2 text-iron-grey hover:text-white transition-colors mb-6">
           <ArrowLeft className="w-4 h-4" />
-          Back to Events
+          {t("event.backToEvents")}
         </Link>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -114,7 +117,7 @@ export default function EventDetailPage() {
             <div>
               {event.is_popular && (
                 <span className="inline-block bg-butter-yellow text-dark-indigo text-sm font-semibold px-4 py-1 rounded-xl mb-4">
-                  Popular Event
+                  {t("event.popular")}
                 </span>
               )}
               <h1 className="text-[32px] md:text-[42px] font-bold leading-tight mb-2">
@@ -134,24 +137,24 @@ export default function EventDetailPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="rounded-xl bg-primary p-4">
                 <Calendar className="w-5 h-5 text-secondary mb-2" />
-                <p className="text-xs text-pastel-purple">Date</p>
+                <p className="text-xs text-pastel-purple">{t("event.infoDate")}</p>
                 <p className="text-sm font-semibold">{fmtDate(startDate)}</p>
               </div>
               <div className="rounded-xl bg-primary p-4">
                 <Clock className="w-5 h-5 text-secondary mb-2" />
-                <p className="text-xs text-pastel-purple">Time</p>
+                <p className="text-xs text-pastel-purple">{t("event.infoTime")}</p>
                 <p className="text-sm font-semibold">
                   {fmtTime(startDate)}{endDate ? ` - ${fmtTime(endDate)}` : ""}
                 </p>
               </div>
               <div className="rounded-xl bg-primary p-4">
                 <MapPin className="w-5 h-5 text-secondary mb-2" />
-                <p className="text-xs text-pastel-purple">Location</p>
-                <p className="text-sm font-semibold">{event.location ?? "Online"}</p>
+                <p className="text-xs text-pastel-purple">{t("event.infoLocation")}</p>
+                <p className="text-sm font-semibold">{event.location ?? t("event.online")}</p>
               </div>
               <div className="rounded-xl bg-primary p-4">
                 <Monitor className="w-5 h-5 text-secondary mb-2" />
-                <p className="text-xs text-pastel-purple">Type</p>
+                <p className="text-xs text-pastel-purple">{t("event.infoType")}</p>
                 <p className="text-sm font-semibold capitalize">{event.type}</p>
               </div>
             </div>
@@ -160,8 +163,8 @@ export default function EventDetailPage() {
             {event.description && (
               <div>
                 <h2 className="text-xl font-bold mb-3">
-                  About{" "}
-                  <span className="bg-butter-yellow text-dark-indigo px-1">This Event</span>
+                  {t("event.aboutTitle")}{" "}
+                  <span className="bg-butter-yellow text-dark-indigo px-1">{t("event.aboutHighlight")}</span>
                 </h2>
                 <p className="text-iron-grey leading-relaxed whitespace-pre-line">
                   {event.description}
@@ -172,7 +175,7 @@ export default function EventDetailPage() {
             {/* Organizer */}
             {event.organizer && (
               <div className="rounded-2xl bg-primary p-5">
-                <p className="text-sm text-pastel-purple mb-1">Organized by</p>
+                <p className="text-sm text-pastel-purple mb-1">{t("event.organizedBy")}</p>
                 <p className="font-semibold">
                   {event.organizer.company_name || event.organizer.user.name}
                 </p>
@@ -183,10 +186,10 @@ export default function EventDetailPage() {
           {/* Right: Ticket Selection */}
           <div className="lg:col-span-1">
             <div className="sticky top-24 rounded-2xl bg-primary p-6 space-y-4">
-              <h3 className="text-lg font-bold text-secondary">Choose Tickets</h3>
+              <h3 className="text-lg font-bold text-secondary">{t("event.tickets.choose")}</h3>
 
               {activeTickets.length === 0 ? (
-                <p className="text-iron-grey text-sm">No tickets available.</p>
+                <p className="text-iron-grey text-sm">{t("event.tickets.none")}</p>
               ) : (
                 <>
                   {activeTickets.map((ticket) => {
@@ -209,7 +212,7 @@ export default function EventDetailPage() {
                         )}
                         <div className="flex items-center justify-between">
                           <span className="text-xs text-pastel-purple">
-                            {available} left
+                            {t("event.tickets.left", { count: available })}
                           </span>
                           <div className="flex items-center gap-2">
                             <button
@@ -244,11 +247,11 @@ export default function EventDetailPage() {
 
                   <div className="border-t border-bluish-purple pt-4 space-y-1">
                     <div className="flex justify-between text-sm">
-                      <span className="text-iron-grey">Selected</span>
-                      <span>{totalQty} ticket{totalQty !== 1 ? "s" : ""}</span>
+                      <span className="text-iron-grey">{t("event.tickets.selected")}</span>
+                      <span>{totalQty} {totalQty !== 1 ? t("event.tickets.tickets") : t("event.tickets.ticket")}</span>
                     </div>
                     <div className="flex justify-between text-lg font-bold">
-                      <span>Total</span>
+                      <span>{t("event.tickets.total")}</span>
                       <span className="text-secondary">
                         Rp {totalPrice.toLocaleString("id-ID")}
                       </span>
@@ -261,7 +264,7 @@ export default function EventDetailPage() {
                     disabled={totalQty === 0}
                     onClick={handleBook}
                   >
-                    Book Tickets Now
+                    {t("event.tickets.book")}
                   </Button>
                 </>
               )}

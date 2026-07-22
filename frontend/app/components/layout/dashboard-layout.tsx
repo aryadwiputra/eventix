@@ -1,9 +1,11 @@
 import { DashboardSidebar } from "./dashboard-sidebar";
 import { useState } from "react";
 import { Menu } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <div className="min-h-screen bg-dark-indigo flex">
@@ -16,7 +18,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           </button>
           <div className="flex-1" />
           <div className="flex items-center gap-3">
-            <span className="text-sm text-iron-grey hidden sm:block">Admin</span>
+            <span className="text-sm text-iron-grey hidden sm:block">{t("dashboard.sidebar.adminLabel")}</span>
             <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center text-xs font-bold text-secondary">
               A
             </div>

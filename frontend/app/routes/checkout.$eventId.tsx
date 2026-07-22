@@ -8,6 +8,7 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { useAuthStore, type AuthUser } from "~/stores/auth";
 import api from "~/lib/api";
+import { useTranslation } from "react-i18next";
 
 const checkoutSchema = z.object({
   name: z.string().min(3, "Min 3 characters"),
@@ -33,6 +34,7 @@ interface EventSummary {
 }
 
 export default function CheckoutPage() {
+  const { t } = useTranslation();
   const { eventId } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -79,7 +81,7 @@ export default function CheckoutPage() {
       });
       navigate(`/checkout/success/${res.data.data.code}`, { replace: true });
     } catch (err: any) {
-      setServerError(err.response?.data?.message ?? "Checkout failed. Please try again.");
+      setServerError(err.response?.data?.message ?? t("checkout.failed"));
     } finally {
       setSubmitting(false);
     }
@@ -88,7 +90,7 @@ export default function CheckoutPage() {
   if (loadingEvent) {
     return (
       <div className="min-h-[calc(100vh-80px)] flex items-center justify-center">
-        <div className="text-iron-grey">Loading...</div>
+        <div className="text-iron-grey">{t("common.loading")}</div>
       </div>
     );
   }
@@ -101,7 +103,7 @@ export default function CheckoutPage() {
           className="inline-flex items-center gap-2 text-iron-grey hover:text-white transition-colors mb-6"
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to Event
+          {t("checkout.backToEvent")}
         </Link>
 
         <div className="grid lg:grid-cols-5 gap-8">
@@ -109,7 +111,7 @@ export default function CheckoutPage() {
           <div className="lg:col-span-3 space-y-6">
             {event && (
               <div className="rounded-2xl bg-primary p-5">
-                <p className="text-xs text-pastel-purple mb-1">Event</p>
+                <p className="text-xs text-pastel-purple mb-1">{t("checkout.eventLabel")}</p>
                 <p className="font-semibold text-lg">{event.name}</p>
                 <p className="text-sm text-iron-grey">
                   {event.category?.name} · {new Date(event.start_time).toLocaleDateString("id-ID")}
@@ -119,7 +121,7 @@ export default function CheckoutPage() {
             )}
 
             <div className="rounded-2xl bg-primary p-6">
-              <h2 className="text-lg font-bold mb-5">Your Information</h2>
+              <h2 className="text-lg font-bold mb-5">{t("checkout.yourInfo")}</h2>
 
               {serverError && (
                 <div className="mb-4 p-3 rounded-xl bg-red-500/10 text-red-400 text-sm">
@@ -129,40 +131,40 @@ export default function CheckoutPage() {
 
               <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                 <Input
-                  placeholder="Full Name"
+                  placeholder={t("checkout.name")}
                   error={errors.name?.message}
                   {...register("name")}
                 />
                 <Input
                   type="email"
-                  placeholder="Email Address"
+                  placeholder={t("checkout.email")}
                   error={errors.email?.message}
                   {...register("email")}
                 />
                 <Input
                   type="tel"
-                  placeholder="Phone Number"
+                  placeholder={t("checkout.phone")}
                   error={errors.phone?.message}
                   {...register("phone")}
                 />
                 <Button type="submit" variant="secondary" className="w-full" disabled={submitting}>
                   {submitting
-                    ? "Processing..."
-                    : `Pay Rp ${total.toLocaleString("id-ID")}`}
+                    ? t("checkout.processing")
+                    : t("checkout.pay", { amount: total.toLocaleString("id-ID") })}
                 </Button>
               </form>
             </div>
 
             <div className="flex items-center gap-2 text-xs text-iron-grey">
               <ShieldCheck className="w-4 h-4 text-secondary" />
-              Secured by Midtrans. Your payment info is encrypted.
+              {t("checkout.securedBy")}
             </div>
           </div>
 
           {/* Right: Order Summary */}
           <div className="lg:col-span-2">
             <div className="sticky top-24 rounded-2xl bg-primary p-6 space-y-4">
-              <h3 className="font-bold text-secondary">Order Summary</h3>
+              <h3 className="font-bold text-secondary">{t("checkout.orderSummary")}</h3>
 
               {selectedTickets.map((t) => (
                 <div key={t.id} className="flex justify-between text-sm">
@@ -175,11 +177,11 @@ export default function CheckoutPage() {
 
               <div className="border-t border-bluish-purple pt-4 space-y-1">
                 <div className="flex justify-between text-sm">
-                  <span className="text-iron-grey">Subtotal</span>
+                  <span className="text-iron-grey">{t("checkout.subtotal")}</span>
                   <span>Rp {subtotal.toLocaleString("id-ID")}</span>
                 </div>
                 <div className="flex justify-between text-lg font-bold">
-                  <span>Total</span>
+                  <span>{t("checkout.total")}</span>
                   <span className="text-secondary">
                     Rp {total.toLocaleString("id-ID")}
                   </span>

@@ -5,6 +5,7 @@ import { Button } from "~/components/ui/button";
 import { Users, Calendar, Receipt, TrendingUp } from "lucide-react";
 import { Badge } from "~/components/ui/badge";
 import api from "~/lib/api";
+import { useTranslation } from "react-i18next";
 
 const statusColor: Record<string, string> = {
   paid: "bg-green-500/10 text-green-400 border-green-500/20",
@@ -14,6 +15,7 @@ const statusColor: Record<string, string> = {
 };
 
 export default function AdminOverview() {
+  const { t } = useTranslation();
   const [txs, setTxs] = useState<any[]>([]);
 
   useEffect(() => {
@@ -23,16 +25,16 @@ export default function AdminOverview() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Admin Dashboard</h1>
-        <p className="text-iron-grey text-sm mt-1">Overview of all activity</p>
+        <h1 className="text-2xl font-bold">{t("admin.overview.title")}</h1>
+        <p className="text-iron-grey text-sm mt-1">{t("admin.overview.subtitle")}</p>
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: "Total Revenue", value: "Rp 0", icon: TrendingUp, color: "text-secondary" },
-          { label: "Events", value: "-", icon: Calendar, color: "text-butter-yellow" },
-          { label: "Users", value: "-", icon: Users, color: "text-persian-pink" },
-          { label: "Transactions", value: "-", icon: Receipt, color: "text-secondary" },
+          { label: t("admin.overview.totalRevenue"), value: "Rp 0", icon: TrendingUp, color: "text-secondary" },
+          { label: t("admin.overview.events"), value: "-", icon: Calendar, color: "text-butter-yellow" },
+          { label: t("admin.overview.users"), value: "-", icon: Users, color: "text-persian-pink" },
+          { label: t("admin.overview.transactions"), value: "-", icon: Receipt, color: "text-secondary" },
         ].map((s) => (
           <Card key={s.label} className="bg-primary border-bluish-purple">
             <CardContent className="p-5">
@@ -48,31 +50,31 @@ export default function AdminOverview() {
 
       <Card className="bg-primary border-bluish-purple">
         <div className="p-5 border-b border-bluish-purple flex items-center justify-between">
-          <h2 className="font-semibold">Recent Transactions</h2>
+          <h2 className="font-semibold">{t("admin.overview.recentTransactions")}</h2>
           <Link to="/admin/transactions">
-            <Button variant="outline" size="sm">View All</Button>
+            <Button variant="outline" size="sm">{t("admin.overview.viewAll")}</Button>
           </Link>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-bluish-purple text-left text-iron-grey">
-                <th className="p-4 font-medium">Code</th>
-                <th className="p-4 font-medium">Name</th>
-                <th className="p-4 font-medium">Amount</th>
-                <th className="p-4 font-medium">Status</th>
+                <th className="p-4 font-medium">{t("admin.transactions.code")}</th>
+                <th className="p-4 font-medium">{t("admin.transactions.name")}</th>
+                <th className="p-4 font-medium">{t("admin.transactions.amount")}</th>
+                <th className="p-4 font-medium">{t("admin.transactions.status")}</th>
               </tr>
             </thead>
             <tbody>
               {txs.length === 0 ? (
-                <tr><td colSpan={4} className="p-4 text-center text-iron-grey">No transactions yet</td></tr>
+                <tr><td colSpan={4} className="p-4 text-center text-iron-grey">{t("admin.overview.noData")}</td></tr>
               ) : txs.map((tx: any) => (
                 <tr key={tx.id} className="border-b border-bluish-purple/50">
                   <td className="p-4 font-mono">{tx.code}</td>
                   <td className="p-4">{tx.name}</td>
                   <td className="p-4">Rp {(tx.total_amount ?? 0).toLocaleString("id-ID")}</td>
                   <td className="p-4">
-                    <Badge variant="outline" className={statusColor[tx.status] ?? ""}>{tx.status}</Badge>
+                    <Badge variant="outline" className={statusColor[tx.status] ?? ""}>{t("common.status." + tx.status)}</Badge>
                   </td>
                 </tr>
               ))}

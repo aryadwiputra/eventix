@@ -1,5 +1,7 @@
 import { MapPin } from "lucide-react";
 import { Link } from "react-router";
+import { useTranslation } from "react-i18next";
+import i18n from "~/lib/i18n";
 
 interface EventCardProps {
   id: number;
@@ -20,13 +22,11 @@ export function EventCard({
   is_popular,
   category,
 }: EventCardProps) {
+  const { t } = useTranslation();
   const date = new Date(start_time);
-  const months = [
-    "Jan", "Feb", "Mar", "Apr", "Mei", "Jun",
-    "Jul", "Agu", "Sep", "Okt", "Nov", "Des",
-  ];
-  const fmt = (n: number) => n.toString().padStart(2, "0");
-  const formatted = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()} · ${fmt(date.getHours())}:${fmt(date.getMinutes())}`;
+  const locale = i18n.language === "id" ? "id-ID" : "en-US";
+  const formatted = date.toLocaleDateString(locale, { day: "numeric", month: "short", year: "numeric" })
+    + " · " + date.toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit" });
 
   return (
     <div className="group relative rounded-2xl bg-primary overflow-hidden transition-all duration-300 hover:ring-2 hover:ring-secondary/50">
@@ -34,7 +34,7 @@ export function EventCard({
         <span className="text-4xl">🎟️</span>
         {is_popular && (
           <span className="absolute top-3 right-3 bg-butter-yellow text-dark-indigo text-xs font-semibold px-3 py-1 rounded-xl">
-            Popular
+            {t("eventCard.popular")}
           </span>
         )}
       </div>
@@ -45,7 +45,7 @@ export function EventCard({
         <h3 className="text-lg font-semibold truncate">{name}</h3>
         <div className="flex items-center gap-1 mt-1 text-sm text-iron-grey">
           <MapPin className="w-4 h-4" />
-          <span>{location ?? "Online"}</span>
+          <span>{location ?? t("event.online")}</span>
         </div>
 
         <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-3">
@@ -58,7 +58,7 @@ export function EventCard({
             to={`/events/${id}`}
             className="inline-block rounded-[50px] bg-secondary text-dark-indigo font-semibold text-sm px-4 py-2 hover:bg-secondary/80"
           >
-            View Details
+            {t("eventCard.viewDetails")}
           </Link>
         </div>
       </div>

@@ -6,8 +6,10 @@ import { Plus, Pencil, Trash2 } from "lucide-react";
 import api from "~/lib/api";
 import { useAuthStore } from "~/stores/auth";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 export default function AdminCategories() {
+  const { t } = useTranslation();
   const token = useAuthStore((s) => s.token);
   const [cats, setCats] = useState<any[]>([]);
   const [editing, setEditing] = useState<any | null>(null);
@@ -33,7 +35,7 @@ export default function AdminCategories() {
   };
 
   const deleteCat = (id: number) => {
-    if (!confirm("Delete this category?")) return;
+    if (!confirm(t("admin.categories.deleteConfirm"))) return;
     api.delete(`/admin/categories/${id}`).then(fetchCats).catch(() => {});
   };
 
@@ -41,10 +43,10 @@ export default function AdminCategories() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Categories</h1>
-          <p className="text-iron-grey text-sm mt-1">Manage event categories</p>
+          <h1 className="text-2xl font-bold">{t("admin.categories.title")}</h1>
+          <p className="text-iron-grey text-sm mt-1">{t("admin.categories.subtitle")}</p>
         </div>
-        <Button onClick={() => { setEditing({ name: "", icon: "", description: "" }); }}><Plus className="w-4 h-4" /> Add</Button>
+        <Button onClick={() => { setEditing({ name: "", icon: "", description: "" }); }}><Plus className="w-4 h-4" /> {t("admin.categories.add")}</Button>
       </div>
 
       <Card className="bg-primary border-bluish-purple overflow-hidden">
@@ -52,15 +54,15 @@ export default function AdminCategories() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-bluish-purple text-left text-iron-grey">
-                <th className="p-4 font-medium">Name</th>
-                <th className="p-4 font-medium">Icon</th>
-                <th className="p-4 font-medium">Active</th>
-                <th className="p-4 font-medium text-right">Actions</th>
+                <th className="p-4 font-medium">{t("admin.categories.name")}</th>
+                <th className="p-4 font-medium">{t("admin.categories.icon")}</th>
+                <th className="p-4 font-medium">{t("admin.categories.active")}</th>
+                <th className="p-4 font-medium text-right">{t("admin.categories.actions")}</th>
               </tr>
             </thead>
             <tbody>
               {cats.length === 0 ? (
-                <tr><td colSpan={4} className="p-4 text-center text-iron-grey">No categories</td></tr>
+                <tr><td colSpan={4} className="p-4 text-center text-iron-grey">{t("admin.categories.noData")}</td></tr>
               ) : cats.map((c: any) => (
                 <tr key={c.id} className="border-b border-bluish-purple/50">
                   <td className="p-4 font-medium">{c.name}</td>
@@ -85,15 +87,15 @@ export default function AdminCategories() {
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div className="fixed inset-0 bg-black/50" onClick={() => { setEditing(null); reset(); }} />
           <form onSubmit={handleSubmit(onSubmit)} className="relative bg-primary border border-bluish-purple rounded-2xl p-6 w-full max-w-md mx-4">
-            <h2 className="text-lg font-bold mb-4">{editing.id ? "Edit" : "Add"} Category</h2>
+            <h2 className="text-lg font-bold mb-4">{editing.id ? t("admin.categories.dialogEdit") : t("admin.categories.dialogAdd")}</h2>
             <div className="space-y-4">
-              <Input placeholder="Category name" {...register("name", { required: true })} />
-              <Input placeholder="Icon slug (optional)" {...register("icon")} />
-              <Input placeholder="Description (optional)" {...register("description")} />
+              <Input placeholder={t("admin.categories.namePlaceholder")} {...register("name", { required: true })} />
+              <Input placeholder={t("admin.categories.iconPlaceholder")} {...register("icon")} />
+              <Input placeholder={t("admin.categories.descPlaceholder")} {...register("description")} />
             </div>
             <div className="flex justify-end gap-3 mt-6">
-              <Button type="button" variant="outline" onClick={() => { setEditing(null); reset(); }}>Cancel</Button>
-              <Button type="submit" disabled={isSubmitting}>Save</Button>
+              <Button type="button" variant="outline" onClick={() => { setEditing(null); reset(); }}>{t("admin.categories.cancel")}</Button>
+              <Button type="submit" disabled={isSubmitting}>{t("admin.categories.save")}</Button>
             </div>
           </form>
         </div>

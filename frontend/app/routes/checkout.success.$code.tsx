@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router";
 import { CheckCircle, PackageOpen } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import api from "~/lib/api";
+import { useTranslation } from "react-i18next";
 
 interface TransactionData {
   code: string;
@@ -22,6 +23,7 @@ export default function CheckoutSuccessPage() {
   const { code } = useParams();
   const [tx, setTx] = useState<TransactionData | null>(null);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!code) return;
@@ -33,7 +35,7 @@ export default function CheckoutSuccessPage() {
   if (loading) {
     return (
       <div className="min-h-[calc(100vh-80px)] flex items-center justify-center">
-        <div className="text-iron-grey">Loading...</div>
+        <div className="text-iron-grey">{t("common.loading")}</div>
       </div>
     );
   }
@@ -43,8 +45,8 @@ export default function CheckoutSuccessPage() {
       <div className="min-h-[calc(100vh-80px)] flex items-center justify-center">
         <div className="text-center">
           <PackageOpen className="w-16 h-16 text-iron-grey mx-auto mb-4" />
-          <h2 className="text-2xl font-bold mb-2">Transaction Not Found</h2>
-          <Link to="/" className="text-secondary hover:underline">Back to Home</Link>
+          <h2 className="text-2xl font-bold mb-2">{t("checkoutSuccess.notFound")}</h2>
+          <Link to="/" className="text-secondary hover:underline">{t("checkoutSuccess.backHome")}</Link>
         </div>
       </div>
     );
@@ -63,33 +65,33 @@ export default function CheckoutSuccessPage() {
             <CheckCircle className="w-8 h-8 text-green-400" />
           </div>
 
-          <h1 className="text-2xl font-bold mb-2">Order Created!</h1>
+          <h1 className="text-2xl font-bold mb-2">{t("checkoutSuccess.title")}</h1>
           <p className="text-iron-grey mb-6">
-            We've received your order. Complete your payment before the deadline.
+            {t("checkoutSuccess.subtitle")}
           </p>
 
           <div className="rounded-xl bg-bluish-purple p-5 space-y-3 text-left mb-6">
             <div className="flex justify-between text-sm">
-              <span className="text-pastel-purple">Transaction</span>
+              <span className="text-pastel-purple">{t("checkoutSuccess.transaction")}</span>
               <span className="font-mono font-semibold">{tx.code}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-pastel-purple">Event</span>
+              <span className="text-pastel-purple">{t("checkoutSuccess.event")}</span>
               <span>{tx.event.name}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-pastel-purple">Name</span>
+              <span className="text-pastel-purple">{t("checkoutSuccess.name")}</span>
               <span>{tx.name}</span>
             </div>
             <div className="flex justify-between text-lg font-bold border-t border-primary pt-3">
-              <span>Total</span>
+              <span>{t("checkoutSuccess.total")}</span>
               <span className="text-secondary">
                 Rp {tx.total_amount.toLocaleString("id-ID")}
               </span>
             </div>
             {deadline && (
               <div className="flex justify-between text-sm">
-                <span className="text-pastel-purple">Pay before</span>
+                <span className="text-pastel-purple">{t("checkoutSuccess.payBefore")}</span>
                 <span className="text-butter-yellow">{deadline}</span>
               </div>
             )}
@@ -98,12 +100,12 @@ export default function CheckoutSuccessPage() {
           <div className="flex flex-col gap-3">
             <Link to="/dashboard/tickets">
               <Button variant="secondary" className="w-full">
-                View My Tickets
+                {t("checkoutSuccess.viewTickets")}
               </Button>
             </Link>
             <Link to="/">
               <Button variant="outline" className="w-full">
-                Back to Home
+                {t("checkoutSuccess.backHome")}
               </Button>
             </Link>
           </div>

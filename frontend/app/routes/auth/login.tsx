@@ -7,18 +7,19 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { useAuthStore } from "~/stores/auth";
 import api from "~/lib/api";
-
-const loginSchema = z.object({
-  email: z.string().email("Invalid email"),
-  password: z.string().min(1, "Password is required"),
-});
-
-type LoginForm = z.infer<typeof loginSchema>;
+import { useTranslation } from "react-i18next";
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const setAuth = useAuthStore((s) => s.setAuth);
   const [serverError, setServerError] = useState("");
+  const { t } = useTranslation();
+
+  const loginSchema = z.object({
+    email: z.string().email(t("validation.invalidEmail")),
+    password: z.string().min(1, t("validation.passwordRequired")),
+  });
+  type LoginForm = z.infer<typeof loginSchema>;
 
   const {
     register,
@@ -33,7 +34,7 @@ export default function LoginPage() {
       setAuth(res.data.data.token, res.data.data.user);
       navigate("/");
     } catch (err: any) {
-      setServerError(err.response?.data?.message ?? "Login failed");
+      setServerError(err.response?.data?.message ?? t("auth.login.failed"));
     }
   };
 
@@ -41,7 +42,7 @@ export default function LoginPage() {
     <div className="min-h-[calc(100vh-80px)] flex items-center justify-center px-6">
       <div className="w-full max-w-md rounded-2xl bg-primary p-8">
         <h1 className="text-2xl font-bold mb-6 text-center">
-          Sign In to Eventix
+          {t("auth.login.title")}
         </h1>
 
         {serverError && (
@@ -53,25 +54,25 @@ export default function LoginPage() {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <Input
             type="email"
-            placeholder="Email address"
+            placeholder={t("auth.login.email")}
             error={errors.email?.message}
             {...register("email")}
           />
           <Input
             type="password"
-            placeholder="Password"
+            placeholder={t("auth.login.password")}
             error={errors.password?.message}
             {...register("password")}
           />
           <Button type="submit" className="w-full" disabled={isSubmitting}>
-            {isSubmitting ? "Signing in..." : "Sign In"}
+            {isSubmitting ? t("auth.login.submitting") : t("auth.login.submit")}
           </Button>
         </form>
 
         <p className="text-center text-iron-grey text-sm mt-6">
-          Don't have an account?{" "}
+                    {t("auth.login.noAccount")} {" "}
           <Link to="/auth/register" className="text-secondary hover:underline">
-            Register
+            {t("auth.login.register")}
           </Link>
         </p>
       </div>

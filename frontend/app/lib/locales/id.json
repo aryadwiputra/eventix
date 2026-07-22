@@ -1,0 +1,401 @@
+{
+  "nav": {
+    "brand": "Eventix",
+    "events": "Acara",
+    "myTickets": "Tiket Saya",
+    "signIn": "Masuk",
+    "signOut": "Keluar"
+  },
+  "footer": {
+    "tagline": "Platform untuk menemukan dan memesan acara terbaik.",
+    "events": "Acara",
+    "browseEvents": "Jelajahi Acara",
+    "account": "Akun",
+    "signIn": "Masuk",
+    "register": "Daftar",
+    "legal": "Hukum",
+    "privacyPolicy": "Kebijakan Privasi",
+    "termsOfService": "Syarat & Ketentuan",
+    "copyright": "© {{year}} Eventix. Hak cipta dilindungi."
+  },
+  "common": {
+    "loading": "Memuat...",
+    "save": "Simpan",
+    "saving": "Menyimpan...",
+    "cancel": "Batal",
+    "delete": "Hapus",
+    "edit": "Ubah",
+    "create": "Buat",
+    "add": "Tambah",
+    "back": "Kembali",
+    "viewAll": "Lihat Semua",
+    "search": "Cari",
+    "noData": "Tidak ada data",
+    "confirmDelete": "Anda yakin?",
+    "confirmDeleteItem": "Hapus {{item}}?",
+    "confirm": "Konfirmasi",
+    "active": "Aktif",
+    "inactive": "Nonaktif",
+    "status": {
+      "paid": "Lunas",
+      "pending": "Menunggu",
+      "expired": "Kadaluwarsa",
+      "cancelled": "Dibatalkan",
+      "failed": "Gagal",
+      "draft": "Draf",
+      "published": "Terbit"
+    },
+    "type": {
+      "offline": "Offline",
+      "online": "Online"
+    }
+  },
+  "landing": {
+    "hero": {
+      "badge": "Acara Populer",
+      "titleBefore": "Temukan",
+      "titleHighlight": "Acara",
+      "titleAfter": "Menarik di Sekitarmu",
+      "subtitle": "Platform untuk menemukan dan memesan acara terbaik. Dari konser hingga konferensi — semuanya ada di sini.",
+      "exploreEvents": "Jelajahi Acara",
+      "signUpFree": "Daftar Gratis",
+      "cardTitle": "Acara Anda",
+      "cardSubtitle": "Amankan tempat Anda sekarang!"
+    },
+    "events": {
+      "titleBefore": "Acara",
+      "titleHighlight": "Besar",
+      "titleAfter": ", Segera Hadir"
+    },
+    "features": {
+      "titleBefore": "Mengapa Memilih",
+      "titleHighlight": "Eventix?",
+      "easyBookingTitle": "Pemesanan Mudah",
+      "easyBookingDesc": "Cari dan pesan tiket dalam hitungan detik dengan alur checkout yang efisien.",
+      "securePaymentTitle": "Pembayaran Aman",
+      "securePaymentDesc": "Pembayaran Anda dilindungi oleh Midtrans — VA, QRIS, dan lainnya.",
+      "qrCheckinTitle": "QR Check-in",
+      "qrCheckinDesc": "Check-in instan dengan kode QR. Tidak perlu tiket kertas."
+    },
+    "howItWorks": {
+      "titleBefore": "Cara",
+      "titleHighlight": "Kerja",
+      "step1Title": "Cari Acara",
+      "step1Desc": "Temukan konser, workshop, festival, dan lainnya.",
+      "step2Title": "Checkout Aman",
+      "step2Desc": "Pilih tiket, isi data, dan bayar dengan aman.",
+      "step3Title": "Hadiri & Nikmati",
+      "step3Desc": "Tunjukkan kode QR di pintu masuk dan nikmati acaranya."
+    },
+    "categories": {
+      "titleBefore": "Jelajahi berdasarkan",
+      "titleHighlight": "Kategori",
+      "count": "{{count}} acara"
+    },
+    "cta": {
+      "titleBefore": "Siap",
+      "titleHighlight": "Menjelajah?",
+      "subtitle": "Bergabunglah dengan ribuan pengunjung yang mencari pengalaman tak terlupakan.",
+      "browseEvents": "Jelajahi Acara"
+    }
+  },
+  "event": {
+    "popular": "Acara Populer",
+    "infoDate": "Tanggal",
+    "infoTime": "Waktu",
+    "infoLocation": "Lokasi",
+    "infoType": "Tipe",
+    "aboutTitle": "Tentang",
+    "aboutHighlight": "Acara Ini",
+    "organizedBy": "Diselenggarakan oleh",
+    "online": "Online",
+    "tickets": {
+      "choose": "Pilih Tiket",
+      "none": "Tidak ada tiket tersedia.",
+      "left": "{{count}} tersisa",
+      "selected": "Dipilih",
+      "total": "Total",
+      "book": "Pesan Tiket",
+      "ticket": "tiket",
+      "tickets": "tiket"
+    },
+    "notFound": "Acara Tidak Ditemukan",
+    "backHome": "Kembali ke Beranda",
+    "backToEvents": "Kembali ke Acara"
+  },
+  "checkout": {
+    "backToEvent": "Kembali ke Acara",
+    "eventLabel": "Acara",
+    "yourInfo": "Informasi Anda",
+    "name": "Nama Lengkap",
+    "email": "Alamat Email",
+    "phone": "Nomor Telepon",
+    "pay": "Bayar Rp {{amount}}",
+    "processing": "Memproses...",
+    "orderSummary": "Ringkasan Pesanan",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "securedBy": "Diamankan oleh Midtrans. Informasi pembayaran Anda terenkripsi.",
+    "failed": "Checkout gagal. Silakan coba lagi.",
+    "error": "Checkout gagal"
+  },
+  "checkoutSuccess": {
+    "title": "Pesanan Dibuat!",
+    "subtitle": "Kami telah menerima pesanan Anda. Selesaikan pembayaran sebelum batas waktu.",
+    "transaction": "Transaksi",
+    "event": "Acara",
+    "name": "Nama",
+    "total": "Total",
+    "payBefore": "Bayar sebelum",
+    "viewTickets": "Lihat Tiket Saya",
+    "backHome": "Kembali ke Beranda",
+    "notFound": "Transaksi Tidak Ditemukan"
+  },
+  "tickets": {
+    "title": "Tiket Saya",
+    "emptyTitle": "Belum Ada Tiket",
+    "emptyDesc": "Jelajahi acara dan dapatkan tiket pertama Anda!",
+    "browseEvents": "Jelajahi Acara",
+    "used": "Digunakan",
+    "active": "Aktif",
+    "detail": {
+      "back": "Kembali ke Tiket Saya",
+      "ticketType": "Jenis Tiket",
+      "ticketCode": "Kode Tiket",
+      "date": "Tanggal",
+      "location": "Lokasi",
+      "transaction": "Transaksi",
+      "usedTitle": "Tiket Digunakan",
+      "usedDesc": "Digunakan pada {{time}}",
+      "activeTitle": "Tiket Aktif",
+      "activeDesc": "Tunjukkan kode QR ini di pintu masuk",
+      "qrTitle": "Kode QR Anda",
+      "qrDesc": "Tunjukkan kode ini ke staf acara untuk check-in",
+      "viewEvent": "Lihat Detail Acara"
+    },
+    "notFound": "Tiket Tidak Ditemukan",
+    "back": "Kembali ke Tiket Saya"
+  },
+  "auth": {
+    "login": {
+      "title": "Masuk ke Eventix",
+      "email": "Alamat email",
+      "password": "Kata sandi",
+      "submit": "Masuk",
+      "submitting": "Memasuki...",
+      "noAccount": "Belum punya akun?",
+      "register": "Daftar",
+      "failed": "Login gagal"
+    },
+    "register": {
+      "title": "Buat Akun Anda",
+      "name": "Nama lengkap",
+      "email": "Alamat email",
+      "password": "Kata sandi",
+      "confirmPassword": "Konfirmasi kata sandi",
+      "submit": "Buat Akun",
+      "submitting": "Membuat akun...",
+      "hasAccount": "Sudah punya akun?",
+      "signIn": "Masuk",
+      "failed": "Pendaftaran gagal"
+    }
+  },
+  "dashboard": {
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "events": "Acara",
+      "transactions": "Transaksi",
+      "users": "Pengguna",
+      "roles": "Peran",
+      "categories": "Kategori",
+      "myEvents": "Acara Saya",
+      "adminLabel": "Admin"
+    }
+  },
+  "admin": {
+    "overview": {
+      "title": "Dashboard Admin",
+      "subtitle": "Ringkasan semua aktivitas",
+      "totalRevenue": "Total Pendapatan",
+      "events": "Acara",
+      "users": "Pengguna",
+      "transactions": "Transaksi",
+      "recentTransactions": "Transaksi Terbaru",
+      "viewAll": "Lihat Semua",
+      "noData": "Belum ada transaksi"
+    },
+    "users": {
+      "title": "Pengguna",
+      "subtitle": "Kelola semua akun pengguna",
+      "search": "Cari berdasarkan nama atau email...",
+      "name": "Nama",
+      "email": "Email",
+      "roles": "Peran",
+      "created": "Dibuat",
+      "actions": "Aksi",
+      "noData": "Tidak ada pengguna",
+      "deleteConfirm": "Hapus pengguna ini?"
+    },
+    "roles": {
+      "title": "Peran",
+      "subtitle": "Kelola peran dan izinnya",
+      "role": "Peran",
+      "permissions": "Izin",
+      "actions": "Aksi",
+      "dialogTitle": "{{name}} — Izin",
+      "cancel": "Batal",
+      "save": "Simpan"
+    },
+    "categories": {
+      "title": "Kategori",
+      "subtitle": "Kelola kategori acara",
+      "add": "Tambah",
+      "name": "Nama",
+      "icon": "Ikon",
+      "active": "Aktif",
+      "actions": "Aksi",
+      "noData": "Tidak ada kategori",
+      "dialogAdd": "Tambah Kategori",
+      "dialogEdit": "Ubah Kategori",
+      "namePlaceholder": "Nama kategori",
+      "iconPlaceholder": "Slug ikon (opsional)",
+      "descPlaceholder": "Deskripsi (opsional)",
+      "cancel": "Batal",
+      "save": "Simpan",
+      "deleteConfirm": "Hapus kategori ini?"
+    },
+    "transactions": {
+      "title": "Transaksi",
+      "subtitle": "Semua transaksi di seluruh acara",
+      "all": "Semua Status",
+      "noData": "Tidak ada transaksi",
+      "code": "Kode",
+      "name": "Nama",
+      "event": "Acara",
+      "amount": "Jumlah",
+      "status": "Status",
+      "date": "Tanggal",
+      "actions": "Aksi",
+      "approve": "Setujui",
+      "expire": "Kadaluwarsakan"
+    }
+  },
+  "organizer": {
+    "overview": {
+      "title": "Dashboard Penyelenggara",
+      "subtitle": "Acara Anda sekilas",
+      "totalRevenue": "Total Pendapatan",
+      "myEvents": "Acara Saya",
+      "ticketsSold": "Tiket Terjual",
+      "transactions": "Transaksi",
+      "emptyTitle": "Belum ada acara",
+      "emptyDesc": "Buat acara pertama Anda untuk memulai",
+      "createEvent": "Buat Acara"
+    },
+    "events": {
+      "title": "Acara Saya",
+      "subtitle": "Kelola acara Anda",
+      "createEvent": "Buat Acara",
+      "name": "Nama",
+      "type": "Tipe",
+      "status": "Status",
+      "date": "Tanggal",
+      "actions": "Aksi",
+      "noData": "Belum ada acara",
+      "deleteConfirm": "Hapus acara ini?"
+    },
+    "createEvent": {
+      "title": "Buat Acara",
+      "subtitle": "Isi detail acara baru Anda",
+      "back": "Kembali ke Acara",
+      "name": "Nama acara *",
+      "headline": "Judul (opsional)",
+      "description": "Deskripsi (opsional)",
+      "type": "Tipe",
+      "category": "Kategori",
+      "noCategory": "Tidak ada kategori",
+      "startTime": "Waktu mulai *",
+      "endTime": "Waktu selesai",
+      "location": "Lokasi *",
+      "meetingLink": "Tautan meeting *",
+      "cancel": "Batal",
+      "submit": "Buat Acara",
+      "submitting": "Membuat..."
+    },
+    "editEvent": {
+      "title": "Ubah Acara",
+      "subtitle": "Perbarui detail acara Anda",
+      "back": "Kembali ke Acara",
+      "name": "Nama acara",
+      "headline": "Judul",
+      "description": "Deskripsi",
+      "type": "Tipe",
+      "category": "Kategori",
+      "noCategory": "Tidak ada kategori",
+      "startTime": "Waktu mulai",
+      "endTime": "Waktu selesai",
+      "location": "Lokasi",
+      "meetingLink": "Tautan meeting",
+      "cancel": "Batal",
+      "submit": "Simpan Perubahan",
+      "submitting": "Menyimpan..."
+    },
+    "tickets": {
+      "title": "Kelola tiket",
+      "addTicket": "Tambah Tiket",
+      "name": "Nama",
+      "price": "Harga",
+      "qty": "Stok",
+      "sold": "Terjual",
+      "activeCol": "Aktif",
+      "actions": "Aksi",
+      "noData": "Belum ada tiket",
+      "back": "Kembali ke Acara",
+      "dialogAdd": "Tambah Tiket",
+      "dialogEdit": "Ubah Tiket",
+      "dialogName": "Nama tiket *",
+      "dialogDesc": "Deskripsi",
+      "dialogPrice": "Harga *",
+      "dialogQty": "Jumlah *",
+      "dialogMax": "Maks per transaksi (default: 10)",
+      "cancel": "Batal",
+      "save": "Simpan",
+      "saving": "Menyimpan...",
+      "deleteConfirm": "Hapus tiket ini?"
+    },
+    "transactions": {
+      "title": "Transaksi",
+      "subtitle": "Transaksi acara Anda",
+      "code": "Kode",
+      "name": "Nama",
+      "event": "Acara",
+      "amount": "Jumlah",
+      "status": "Status",
+      "date": "Tanggal",
+      "noData": "Tidak ada transaksi"
+    }
+  },
+  "eventCard": {
+    "popular": "Populer",
+    "viewDetails": "Lihat Detail"
+  },
+  "categoryCard": {
+    "events": "{{count}} acara"
+  },
+  "validation": {
+    "invalidEmail": "Email tidak valid",
+    "passwordRequired": "Kata sandi wajib diisi",
+    "nameMin": "Nama minimal 3 karakter",
+    "passwordMin": "Kata sandi minimal 8 karakter",
+    "passwordsNoMatch": "Kata sandi tidak cocok",
+    "nameMinCheckout": "Min 3 karakter",
+    "phoneMin": "Min 10 digit",
+    "phoneMax": "Maks 15 digit"
+  },
+  "error": {
+    "notFound": "Tidak Ditemukan",
+    "generic": "Terjadi kesalahan yang tidak terduga.",
+    "pageNotFound": "Halaman yang diminta tidak ditemukan.",
+    "default": "Oops!"
+  }
+}
