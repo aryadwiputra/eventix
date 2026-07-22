@@ -76,7 +76,11 @@ class EventController extends Controller
     {
         $data = $request->validated();
 
-        if (!$this->isAdmin($request)) {
+        if ($this->isAdmin($request)) {
+            if ($request->has('organizer_id')) {
+                $data['organizer_id'] = $request->organizer_id;
+            }
+        } else {
             $data['organizer_id'] = $this->organizerId($request);
             unset($data['is_popular']);
         }
