@@ -15,6 +15,31 @@
   --color-smoke-purple: #A497BE;
 }
 
+@layer base {
+  :root {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: #27164B;
+    --card-foreground: oklch(0.985 0 0);
+    --popover: #27164B;
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: #82D0DF;
+    --primary-foreground: #0D0322;
+    --secondary: #38255F;
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: #38255F;
+    --muted-foreground: #A99FBD;
+    --accent: #DF82CB;
+    --accent-foreground: #0D0322;
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.985 0.985 0);
+    --border: #38255F;
+    --input: #38255F;
+    --ring: #82D0DF;
+    --radius: 1rem;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
