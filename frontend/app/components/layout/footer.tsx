@@ -6,7 +6,7 @@ export function Footer() {
       <div className="max-w-screen-xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <h3 className="text-xl font-bold mb-3">
-            Ticke<span className="text-secondary">ty</span>
+            Eventix
           </h3>
           <p className="text-pastel-purple text-sm">
             Your go-to platform for discovering and booking amazing events.
@@ -40,7 +40,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-primary text-center py-4 text-sm text-pastel-purple">
-        &copy; {new Date().getFullYear()} Tickety. All rights reserved.
+        &copy; {new Date().getFullYear()} Eventix. All rights reserved.
       </div>
     </footer>
   );

@@ -26,7 +26,7 @@ export const useAuthStore = create<AuthState>()(
       logout: () => set({ token: null, user: null, isAuthenticated: false }),
     }),
     {
-      name: "tickety-auth",
+      name: "eventix-auth",
       partialize: (s) => ({
         token: s.token,
         user: s.user,

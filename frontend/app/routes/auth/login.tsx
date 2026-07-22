@@ -41,7 +41,7 @@ export default function LoginPage() {
     <div className="min-h-[calc(100vh-80px)] flex items-center justify-center px-6">
       <div className="w-full max-w-md rounded-2xl bg-primary p-8">
         <h1 className="text-2xl font-bold mb-6 text-center">
-          Sign In to Tickety
+          Sign In to Eventix
         </h1>
 
         {serverError && (

@@ -13,7 +13,7 @@ export function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-dark-indigo/80 backdrop-blur-md border-b border-primary">
       <div className="max-w-screen-xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link to="/" className="text-2xl font-bold">
-          Ticke<span className="text-secondary">ty</span>
+          Eventix
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
