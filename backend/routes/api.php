@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CheckinController;
 use App\Http\Controllers\Api\CheckoutController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\TicketController;
+use App\Http\Controllers\Api\UserTicketController;
+use App\Http\Controllers\Api\WaitlistController;
 use App\Http\Controllers\Api\WebhookController;
 use App\Http\Controllers\Api\Admin\CategoryController;
 use App\Http\Controllers\Api\Admin\RoleController;
@@ -34,6 +37,21 @@ Route::middleware('jwt.auth')->group(function () {
 });
 
 Route::post('webhooks/midtrans', [WebhookController::class, 'midtrans']);
+
+Route::middleware('jwt.auth')->group(function () {
+    Route::get('tickets', [UserTicketController::class, 'index']);
+    Route::get('tickets/{code}', [UserTicketController::class, 'show']);
+
+    Route::post('waitlist', [WaitlistController::class, 'store']);
+    Route::get('waitlist', [WaitlistController::class, 'index']);
+    Route::delete('waitlist/{waitlist}', [WaitlistController::class, 'destroy']);
+    Route::post('waitlist/{waitlist}/claim', [WaitlistController::class, 'claim']);
+});
+
+Route::middleware(['jwt.auth', 'permission:checkin.perform'])->group(function () {
+    Route::post('checkin/verify', [CheckinController::class, 'verify']);
+    Route::post('checkin/redeem', [CheckinController::class, 'redeem']);
+});
 
 Route::prefix('admin')->middleware(['jwt.auth'])->group(function () {
     Route::apiResource('users', UserController::class)->middleware('permission:users.manage');
