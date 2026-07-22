@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\TicketController;
 use App\Http\Controllers\Api\Admin\CategoryController;
 use App\Http\Controllers\Api\Admin\RoleController;
 use App\Http\Controllers\Api\Admin\TransactionController;
@@ -36,4 +37,10 @@ Route::prefix('admin')->middleware(['jwt.auth'])->group(function () {
     Route::post('events', [EventController::class, 'store'])->middleware('permission:events.create');
     Route::put('events/{event}', [EventController::class, 'update'])->middleware('permission:events.update');
     Route::delete('events/{event}', [EventController::class, 'destroy'])->middleware('permission:events.delete');
+
+    Route::get('events/{event}/tickets', [TicketController::class, 'index'])->middleware('permission:tickets.read');
+    Route::get('events/{event}/tickets/{ticket}', [TicketController::class, 'show'])->middleware('permission:tickets.read');
+    Route::post('events/{event}/tickets', [TicketController::class, 'store'])->middleware('permission:tickets.create');
+    Route::put('events/{event}/tickets/{ticket}', [TicketController::class, 'update'])->middleware('permission:tickets.update');
+    Route::delete('events/{event}/tickets/{ticket}', [TicketController::class, 'destroy'])->middleware('permission:tickets.delete');
 });
