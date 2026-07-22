@@ -60,7 +60,9 @@
       "exploreEvents": "Jelajahi Acara",
       "signUpFree": "Daftar Gratis",
       "cardTitle": "Acara Anda",
-      "cardSubtitle": "Amankan tempat Anda sekarang!"
+      "cardSubtitle": "Amankan tempat Anda sekarang!",
+      "getTickets": "Dapatkan Tiket",
+      "featuredLabel": "Acara Unggulan"
     },
     "events": {
       "titleBefore": "Acara",
@@ -92,12 +94,53 @@
       "titleHighlight": "Kategori",
       "count": "{{count}} acara"
     },
+    "countdown": {
+      "days": "Hari",
+      "hours": "Jam",
+      "minutes": "Menit",
+      "seconds": "Detik",
+      "eventStartsIn": "Acara dimulai dalam"
+    },
+    "socialProof": {
+      "title": "Dipercaya Ribuan Orang",
+      "events": "Acara Terselenggara",
+      "tickets": "Tiket Terjual",
+      "attendees": "Pengunjung Puas",
+      "cities": "Kota Terjangkau"
+    },
+    "testimonials": {
+      "title": "Kata Mereka",
+      "subtitle": "Dengarkan dari pengunjung dan penyelenggara yang mencintai Eventix",
+      "item1Name": "Sarah Johnson",
+      "item1Role": "Pengunjung Konser",
+      "item1Quote": "Memesan tiket sangat mudah! Tidak perlu antre lagi di venue.",
+      "item2Name": "Mike Chen",
+      "item2Role": "Penyelenggara Acara",
+      "item2Quote": "Eventix menyederhanakan penjualan tiket kami. QR check-in menghemat waktu kami.",
+      "item3Name": "Ayu Putri",
+      "item3Role": "Peserta Workshop",
+      "item3Quote": "Saya menemukan banyak workshop menarik di sini. Sangat merekomendasikan!"
+    },
     "cta": {
       "titleBefore": "Siap",
       "titleHighlight": "Menjelajah?",
       "subtitle": "Bergabunglah dengan ribuan pengunjung yang mencari pengalaman tak terlupakan.",
       "browseEvents": "Jelajahi Acara"
     }
+  },
+  "eventsPage": {
+    "title": "Jelajahi Acara",
+    "subtitle": "Temukan dan pesan acara terbaik di sekitar Anda",
+    "searchPlaceholder": "Cari acara berdasarkan nama...",
+    "filterAllType": "Semua Tipe",
+    "filterAll": "Semua Kategori",
+    "filterOffline": "Offline",
+    "filterOnline": "Online",
+    "showingResults": "Menampilkan {{count}} acara",
+    "clearFilters": "Hapus Filter",
+    "noEvents": "Tidak ada acara",
+    "noEventsDesc": "Coba sesuaikan pencarian atau filter untuk menemukan apa yang Anda cari.",
+    "loadMore": "Muat Lainnya"
   },
   "event": {
     "popular": "Acara Populer",
@@ -380,6 +423,9 @@
   },
   "eventCard": {
     "popular": "Populer",
+    "soldOut": "Habis",
+    "fromPrice": "Dari Rp {{price}}",
+    "free": "Gratis",
     "viewDetails": "Lihat Detail"
   },
   "categoryCard": {

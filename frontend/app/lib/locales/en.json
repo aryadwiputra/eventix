@@ -60,7 +60,9 @@
       "exploreEvents": "Explore Events",
       "signUpFree": "Sign Up Free",
       "cardTitle": "Your Next Event",
-      "cardSubtitle": "Secure your spot today!"
+      "cardSubtitle": "Secure your spot today!",
+      "getTickets": "Get Tickets",
+      "featuredLabel": "Featured Event"
     },
     "events": {
       "titleBefore": "Big",
@@ -92,12 +94,53 @@
       "titleHighlight": "Category",
       "count": "{{count}} events"
     },
+    "countdown": {
+      "days": "Days",
+      "hours": "Hours",
+      "minutes": "Mins",
+      "seconds": "Secs",
+      "eventStartsIn": "Event starts in"
+    },
+    "socialProof": {
+      "title": "Trusted by Thousands",
+      "events": "Events Hosted",
+      "tickets": "Tickets Sold",
+      "attendees": "Happy Attendees",
+      "cities": "Cities Covered"
+    },
+    "testimonials": {
+      "title": "What People Say",
+      "subtitle": "Hear from event goers and organizers who love Eventix",
+      "item1Name": "Sarah Johnson",
+      "item1Role": "Concert Goer",
+      "item1Quote": "Booking tickets was so easy! No more queuing at the venue.",
+      "item2Name": "Mike Chen",
+      "item2Role": "Event Organizer",
+      "item2Quote": "Eventix streamlined our ticket sales. The QR check-in saved us hours.",
+      "item3Name": "Ayu Putri",
+      "item3Role": "Workshop Participant",
+      "item3Quote": "I found so many interesting workshops here. Highly recommend!"
+    },
     "cta": {
       "titleBefore": "Ready to",
       "titleHighlight": "Discover?",
       "subtitle": "Join thousands of attendees finding their next unforgettable experience.",
       "browseEvents": "Browse Events Now"
     }
+  },
+  "eventsPage": {
+    "title": "Discover Events",
+    "subtitle": "Find and book the best events around you",
+    "searchPlaceholder": "Search events by name...",
+    "filterAllType": "All Types",
+    "filterAll": "All Categories",
+    "filterOffline": "Offline",
+    "filterOnline": "Online",
+    "showingResults": "Showing {{count}} event(s)",
+    "clearFilters": "Clear Filters",
+    "noEvents": "No events found",
+    "noEventsDesc": "Try adjusting your search or filters to find what you're looking for.",
+    "loadMore": "Load More"
   },
   "event": {
     "popular": "Popular Event",
@@ -380,6 +423,9 @@
   },
   "eventCard": {
     "popular": "Popular",
+    "soldOut": "Sold Out",
+    "fromPrice": "From Rp {{price}}",
+    "free": "Free",
     "viewDetails": "View Details"
   },
   "categoryCard": {

@@ -28,6 +28,7 @@ Route::prefix('auth')->group(function () {
 
 Route::get('events', [EventController::class, 'index']);
 Route::get('events/{event}', [EventController::class, 'show']);
+Route::get('categories', [CategoryController::class, 'index']);
 
 Route::middleware(['jwt.auth', 'permission:checkout.perform'])->group(function () {
     Route::post('checkout', [CheckoutController::class, 'checkout']);
