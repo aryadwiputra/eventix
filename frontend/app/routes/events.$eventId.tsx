@@ -32,6 +32,7 @@ interface EventData {
   is_popular: boolean;
   category: { id: number; name: string } | null;
   organizer: { id: number; company_name?: string; user: { name: string } } | null;
+  photos: string[];
   tickets: TicketType[];
 }
 
@@ -128,10 +129,22 @@ export default function EventDetailPage() {
               )}
             </div>
 
-            {/* Event Image Placeholder */}
-            <div className="rounded-2xl bg-bluish-purple h-64 md:h-80 flex items-center justify-center">
-              <span className="text-6xl">🎟️</span>
-            </div>
+            {/* Event Photos */}
+            {event.photos?.length > 0 ? (
+              <div className="flex gap-3 overflow-x-auto pb-2">
+                {event.photos.map((p, i) => (
+                  <img
+                    key={i}
+                    src={`/storage/${p}`}
+                    className="rounded-2xl h-64 md:h-80 object-cover flex-shrink-0"
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="rounded-2xl bg-bluish-purple h-64 md:h-80 flex items-center justify-center">
+                <span className="text-6xl">🎟️</span>
+              </div>
+            )}
 
             {/* Info Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

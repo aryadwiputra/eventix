@@ -19,6 +19,7 @@ export default function CreateEvent() {
     start_time: "", end_time: "", location: "", meeting_link: "",
     category_id: "",
   });
+  const [photos, setPhotos] = useState<File[]>([]);
 
   useEffect(() => {
     api.get("/admin/categories").then((r) => setCats(r.data.data ?? [])).catch(() => {});
@@ -33,7 +34,12 @@ export default function CreateEvent() {
       else delete payload.category_id;
       if (!payload.end_time) delete payload.end_time;
 
-      await api.post("/admin/events", payload);
+      const res = await api.post("/admin/events", payload);
+      if (photos.length) {
+        const fd = new FormData();
+        photos.forEach((f) => fd.append("photos[]", f));
+        await api.post(`/admin/events/${res.data.data.id}/photos`, fd).catch(() => {});
+      }
       navigate("/organizer/events");
     } catch {
       setSubmitting(false);
@@ -95,6 +101,10 @@ export default function CreateEvent() {
           {form.type === "online" && (
             <Input placeholder={t("organizer.createEvent.meetingLink")} value={form.meeting_link} onChange={(e) => setForm({ ...form, meeting_link: e.target.value })} required />
           )}
+          <div>
+            <label className="text-xs text-iron-grey mb-1 block">{t("organizer.createEvent.photos")}</label>
+            <Input type="file" accept="image/*" multiple onChange={(e) => setPhotos(Array.from(e.target.files ?? []))} />
+          </div>
           <div className="flex justify-end gap-3 pt-2">
             <Button type="button" variant="outline" onClick={() => navigate("/organizer/events")}>{t("organizer.createEvent.cancel")}</Button>
             <Button type="submit" disabled={submitting}>{submitting ? t("organizer.createEvent.submitting") : t("organizer.createEvent.submit")}</Button>

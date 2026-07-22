@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router";
 import { useAuthStore } from "~/stores/auth";
-import { ArrowLeft, MapPin, Calendar, CheckCircle, XCircle } from "lucide-react";
+import { ArrowLeft, MapPin, Calendar, CheckCircle, XCircle, Download } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import { Button } from "~/components/ui/button";
 import api from "~/lib/api";
@@ -168,7 +168,25 @@ export default function TicketDetailPage() {
               <p className="text-sm text-iron-grey">
                 {t("tickets.detail.qrDesc")}
               </p>
-              <div className="mt-6">
+              <div className="mt-6 flex flex-col gap-3">
+                <button
+                  onClick={async () => {
+                    if (!ticket) return;
+                    try {
+                      const res = await api.get(`/tickets/${ticket.code}/pdf`, { responseType: "blob" });
+                      const url = window.URL.createObjectURL(new Blob([res.data]));
+                      const a = document.createElement("a");
+                      a.href = url;
+                      a.download = `ticket-${ticket.code}.pdf`;
+                      a.click();
+                      window.URL.revokeObjectURL(url);
+                    } catch {}
+                  }}
+                  className="inline-flex items-center justify-center gap-2 rounded-[50px] bg-secondary text-dark-indigo font-semibold text-sm px-4 py-3 hover:bg-secondary/80 transition-colors"
+                >
+                  <Download className="w-4 h-4" />
+                  {t("tickets.detail.downloadPdf")}
+                </button>
                 <Link to={`/events/${event.id}`}>
                   <Button variant="outline" className="w-full">
                     {t("tickets.detail.viewEvent")}

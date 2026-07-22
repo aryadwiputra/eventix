@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\Admin\CategoryController;
 use App\Http\Controllers\Api\Admin\RoleController;
 use App\Http\Controllers\Api\Admin\TransactionController;
 use App\Http\Controllers\Api\Admin\UserController;
+use App\Http\Controllers\Api\EventPhotoController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {
@@ -41,6 +42,7 @@ Route::post('webhooks/midtrans', [WebhookController::class, 'midtrans']);
 Route::middleware('jwt.auth')->group(function () {
     Route::get('tickets', [UserTicketController::class, 'index']);
     Route::get('tickets/{code}', [UserTicketController::class, 'show']);
+    Route::get('tickets/{code}/pdf', [UserTicketController::class, 'download']);
 
     Route::post('waitlist', [WaitlistController::class, 'store']);
     Route::get('waitlist', [WaitlistController::class, 'index']);
@@ -67,6 +69,9 @@ Route::prefix('admin')->middleware(['jwt.auth'])->group(function () {
     Route::post('events', [EventController::class, 'store'])->middleware('permission:events.create');
     Route::put('events/{event}', [EventController::class, 'update'])->middleware('permission:events.update');
     Route::delete('events/{event}', [EventController::class, 'destroy'])->middleware('permission:events.delete');
+
+    Route::post('events/{event}/photos', [EventPhotoController::class, 'upload'])->middleware('permission:events.create');
+    Route::delete('events/{event}/photos/{index}', [EventPhotoController::class, 'destroy'])->middleware('permission:events.delete');
 
     Route::get('events/{event}/tickets', [TicketController::class, 'index'])->middleware('permission:tickets.read');
     Route::get('events/{event}/tickets/{ticket}', [TicketController::class, 'show'])->middleware('permission:tickets.read');

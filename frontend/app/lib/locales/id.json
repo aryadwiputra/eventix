@@ -171,7 +171,8 @@
       "activeDesc": "Tunjukkan kode QR ini di pintu masuk",
       "qrTitle": "Kode QR Anda",
       "qrDesc": "Tunjukkan kode ini ke staf acara untuk check-in",
-      "viewEvent": "Lihat Detail Acara"
+      "viewEvent": "Lihat Detail Acara",
+    "downloadPdf": "Unduh PDF"
     },
     "notFound": "Tiket Tidak Ditemukan",
     "back": "Kembali ke Tiket Saya"
@@ -318,6 +319,7 @@
       "endTime": "Waktu selesai",
       "location": "Lokasi *",
       "meetingLink": "Tautan meeting *",
+      "photos": "Foto (maks 5, 5MB per foto)",
       "cancel": "Batal",
       "submit": "Buat Acara",
       "submitting": "Membuat..."
@@ -336,6 +338,7 @@
       "endTime": "Waktu selesai",
       "location": "Lokasi",
       "meetingLink": "Tautan meeting",
+      "photos": "Foto (maks 5, 5MB per foto)",
       "cancel": "Batal",
       "submit": "Simpan Perubahan",
       "submitting": "Menyimpan..."

@@ -15,6 +15,8 @@ export default function EditEvent() {
   const [submitting, setSubmitting] = useState(false);
   const [loading, setLoading] = useState(true);
   const [form, setForm] = useState<any>({});
+  const [photos, setPhotos] = useState<File[]>([]);
+  const [existingPhotos, setExistingPhotos] = useState<string[]>([]);
 
   useEffect(() => {
     api.get("/admin/categories").then((r) => setCats(r.data.data ?? [])).catch(() => {});
@@ -27,6 +29,7 @@ export default function EditEvent() {
           location: e.location ?? "", meeting_link: e.meeting_link ?? "", category_id: e.category_id ?? "",
           status: e.status ?? "draft",
         });
+        setExistingPhotos(e.photos ?? []);
       }).finally(() => setLoading(false));
     }
   }, [id]);
@@ -41,6 +44,11 @@ export default function EditEvent() {
       if (!payload.end_time) delete payload.end_time;
 
       await api.put(`/admin/events/${id}`, payload);
+      if (photos.length) {
+        const fd = new FormData();
+        photos.forEach((f) => fd.append("photos[]", f));
+        await api.post(`/admin/events/${id}/photos`, fd).catch(() => {});
+      }
       navigate("/organizer/events");
     } catch { setSubmitting(false); }
   };
@@ -104,6 +112,17 @@ export default function EditEvent() {
           </div>
           {form.type === "offline" && <Input placeholder={t("organizer.editEvent.location")} value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} required />}
           {form.type === "online" && <Input placeholder={t("organizer.editEvent.meetingLink")} value={form.meeting_link} onChange={(e) => setForm({ ...form, meeting_link: e.target.value })} required />}
+          <div>
+            <label className="text-xs text-iron-grey mb-1 block">{t("organizer.editEvent.photos")}</label>
+            {existingPhotos.length > 0 && (
+              <div className="flex gap-2 mb-2 flex-wrap">
+                {existingPhotos.map((p, i) => (
+                  <img key={i} src={`/storage/${p}`} className="w-20 h-20 object-cover rounded-lg" />
+                ))}
+              </div>
+            )}
+            <Input type="file" accept="image/*" multiple onChange={(e) => setPhotos(Array.from(e.target.files ?? []))} />
+          </div>
           <div className="flex justify-end gap-3 pt-2">
             <Button type="button" variant="outline" onClick={() => navigate("/organizer/events")}>{t("organizer.editEvent.cancel")}</Button>
             <Button type="submit" disabled={submitting}>{submitting ? t("organizer.editEvent.submitting") : t("organizer.editEvent.submit")}</Button>

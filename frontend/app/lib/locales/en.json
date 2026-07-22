@@ -171,7 +171,8 @@
       "activeDesc": "Show this QR code at the entrance",
       "qrTitle": "Your QR Code",
       "qrDesc": "Show this code to the event staff for check-in",
-      "viewEvent": "View Event Details"
+      "viewEvent": "View Event Details",
+    "downloadPdf": "Download PDF"
     },
     "notFound": "Ticket Not Found",
     "back": "Back to My Tickets"
@@ -318,6 +319,7 @@
       "endTime": "End time",
       "location": "Location *",
       "meetingLink": "Meeting link *",
+      "photos": "Photos (max 5, 5MB each)",
       "cancel": "Cancel",
       "submit": "Create Event",
       "submitting": "Creating..."
@@ -336,6 +338,7 @@
       "endTime": "End time",
       "location": "Location",
       "meetingLink": "Meeting link",
+      "photos": "Photos (max 5, 5MB each)",
       "cancel": "Cancel",
       "submit": "Save Changes",
       "submitting": "Saving..."
