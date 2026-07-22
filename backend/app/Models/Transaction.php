@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
@@ -69,9 +70,9 @@ class Transaction extends Model
         return $this->hasMany(TransactionItem::class);
     }
 
-    public function ticketCodes(): HasMany
+    public function ticketCodes(): HasManyThrough
     {
-        return $this->hasMany(TicketCode::class);
+        return $this->hasManyThrough(TicketCode::class, TransactionItem::class);
     }
 
     public function isPending(): bool

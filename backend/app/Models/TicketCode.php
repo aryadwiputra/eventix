@@ -37,11 +37,6 @@ class TicketCode extends Model
         return $this->belongsTo(TransactionItem::class);
     }
 
-    public function transaction(): BelongsTo
-    {
-        return $this->belongsTo(Transaction::class);
-    }
-
     public function redeemer(): BelongsTo
     {
         return $this->belongsTo(User::class, 'redeemed_by');
