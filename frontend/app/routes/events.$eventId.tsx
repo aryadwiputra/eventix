@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router";
-import { MapPin, Clock, Calendar, Monitor, Minus, Plus, ArrowLeft } from "lucide-react";
+import { MapPin, Clock, Calendar, Monitor, Minus, Plus, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { useAuthStore } from "~/stores/auth";
 import api from "~/lib/api";
 import { useTranslation } from "react-i18next";
 import i18n from "~/lib/i18n";
+import { Lightbox } from "~/components/ui/lightbox";
 
 interface TicketType {
   id: number;
@@ -53,6 +54,8 @@ export default function EventDetailPage() {
   const [event, setEvent] = useState<EventData | null>(null);
   const [loading, setLoading] = useState(true);
   const [qty, setQty] = useState<Record<number, number>>({});
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [carouselIndex, setCarouselIndex] = useState(0);
 
   useEffect(() => {
     if (!eventId) return;
@@ -131,14 +134,56 @@ export default function EventDetailPage() {
 
             {/* Event Photos */}
             {event.photos?.length > 0 ? (
-              <div className="flex gap-3 overflow-x-auto pb-2">
-                {event.photos.map((p, i) => (
-                  <img
-                    key={i}
-                    src={`/storage/${p}`}
-                    className="rounded-2xl h-64 md:h-80 object-cover flex-shrink-0"
+              <div className="relative">
+                <div className="relative overflow-hidden rounded-2xl">
+                  <button
+                    onClick={() => setLightboxIndex(carouselIndex)}
+                    className="w-full focus:outline-none"
+                  >
+                    <img
+                      src={`/storage/${event.photos[carouselIndex]}`}
+                      alt=""
+                      className="w-full h-64 md:h-80 object-cover animate-fade-in"
+                      key={carouselIndex}
+                    />
+                  </button>
+                  {event.photos.length > 1 && (
+                    <>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setCarouselIndex((i) => Math.max(0, i - 1)); }}
+                        className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 backdrop-blur flex items-center justify-center hover:bg-black/60 transition-colors"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setCarouselIndex((i) => Math.min(event.photos.length - 1, i + 1)); }}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 backdrop-blur flex items-center justify-center hover:bg-black/60 transition-colors"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </>
+                  )}
+                </div>
+                {event.photos.length > 1 && (
+                  <div className="flex justify-center gap-2 mt-3">
+                    {event.photos.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setCarouselIndex(i)}
+                        className={`w-2.5 h-2.5 rounded-full transition-all ${
+                          i === carouselIndex ? "bg-secondary w-6" : "bg-bluish-purple hover:bg-pastel-purple"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                )}
+                {lightboxIndex !== null && (
+                  <Lightbox
+                    images={event.photos}
+                    initialIndex={lightboxIndex}
+                    onClose={() => setLightboxIndex(null)}
                   />
-                ))}
+                )}
               </div>
             ) : (
               <div className="rounded-2xl bg-bluish-purple h-64 md:h-80 flex items-center justify-center">
