@@ -55,7 +55,8 @@ export default function CheckoutSuccessPage() {
     : null;
 
   return (
-    <div className="min-h-[calc(100vh-80px)] flex items-center justify-center px-6">
+    <div className="min-h-[calc(100vh-80px)] flex items-center justify-center px-6 relative">
+      <img src="/svgs/wavy-line-4.svg" className="absolute bottom-0 w-full -z-10" alt="" />
       <div className="w-full max-w-lg text-center">
         <div className="rounded-2xl bg-primary p-8">
           <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4">

@@ -122,6 +122,8 @@ export default function Landing() {
         </div>
       </section>
 
+      <img src="/svgs/wavy-line-1.svg" className="absolute -z-10 w-full mt-[-200px]" alt="" />
+
       {/* Events Grid */}
       <section className="py-20">
         <div className="max-w-screen-xl mx-auto px-6">
@@ -146,7 +148,7 @@ export default function Landing() {
           <h2 className="text-[24px] md:text-[38px] font-bold text-center mb-12">
             Why Choose{" "}
             <span className="bg-butter-yellow text-dark-indigo px-2">
-              Tickety?
+              Eventix?
             </span>
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -213,6 +215,8 @@ export default function Landing() {
           </div>
         </div>
       </section>
+
+      <img src="/svgs/wavy-line-2.svg" className="absolute -z-10 w-full mt-[-200px]" alt="" />
 
       {/* CTA */}
       <section className="py-24 text-center">

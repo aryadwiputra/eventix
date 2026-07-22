@@ -99,7 +99,8 @@ export default function EventDetailPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-80px)]">
+    <div className="min-h-[calc(100vh-80px)] relative">
+      <img src="/svgs/wavy-line-3.svg" className="absolute -z-10 w-full top-[300px]" alt="" />
       <div className="max-w-screen-xl mx-auto px-6 py-8">
         <Link to="/" className="inline-flex items-center gap-2 text-iron-grey hover:text-white transition-colors mb-6">
           <ArrowLeft className="w-4 h-4" />

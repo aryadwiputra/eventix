@@ -6,7 +6,7 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  const stored = localStorage.getItem("tickety-auth");
+  const stored = localStorage.getItem("eventix-auth");
   if (stored) {
     try {
       const token = JSON.parse(stored)?.state?.token;
