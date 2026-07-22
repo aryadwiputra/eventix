@@ -20,11 +20,10 @@ export function Navbar() {
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
-          <Link
-            to="/events"
-            className="text-iron-grey hover:text-white transition-colors"
-          >
-            {t("nav.events")}
+          <Link to="/events">
+            <Button variant="outline" size="sm">
+              {t("nav.events")}
+            </Button>
           </Link>
 
           {isAuthenticated ? (

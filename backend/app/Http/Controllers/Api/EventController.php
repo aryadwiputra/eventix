@@ -43,6 +43,7 @@ class EventController extends Controller
     {
         $events = $this->baseQuery($request)
             ->with('category:id,name,slug', 'organizer.user:id,name')
+            ->withMin('tickets', 'price')
             ->when($request->category_id, fn ($q, $v) => $q->where('category_id', $v))
             ->when($request->type, fn ($q, $v) => $q->where('type', $v))
             ->when($request->search, fn ($q, $v) => $q->where('name', 'like', "%{$v}%"))
