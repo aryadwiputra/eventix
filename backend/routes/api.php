@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CheckoutController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\TicketController;
+use App\Http\Controllers\Api\WebhookController;
 use App\Http\Controllers\Api\Admin\CategoryController;
 use App\Http\Controllers\Api\Admin\RoleController;
 use App\Http\Controllers\Api\Admin\TransactionController;
@@ -22,6 +24,16 @@ Route::prefix('auth')->group(function () {
 
 Route::get('events', [EventController::class, 'index']);
 Route::get('events/{event}', [EventController::class, 'show']);
+
+Route::middleware(['jwt.auth', 'permission:checkout.perform'])->group(function () {
+    Route::post('checkout', [CheckoutController::class, 'checkout']);
+});
+
+Route::middleware('jwt.auth')->group(function () {
+    Route::get('checkout/{code}', [CheckoutController::class, 'status']);
+});
+
+Route::post('webhooks/midtrans', [WebhookController::class, 'midtrans']);
 
 Route::prefix('admin')->middleware(['jwt.auth'])->group(function () {
     Route::apiResource('users', UserController::class)->middleware('permission:users.manage');
