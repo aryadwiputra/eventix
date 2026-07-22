@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router";
 import { cn } from "~/lib/utils";
 import { X, LayoutDashboard, Calendar, Users, Shield, ListTree, Receipt, Settings, Ticket } from "lucide-react";
 import { useAuthStore } from "~/stores/auth";
+import { useTranslation } from "react-i18next";
 
 interface NavItem {
   label: string;
@@ -12,24 +13,25 @@ interface NavItem {
   attendeeOnly?: boolean;
 }
 
-const navItems: NavItem[] = [
-  { label: "Dashboard", href: "/admin", icon: LayoutDashboard, adminOnly: true },
-  { label: "Events", href: "/admin/events", icon: Calendar, adminOnly: true },
-  { label: "Transactions", href: "/admin/transactions", icon: Receipt, adminOnly: true },
-  { label: "Users", href: "/admin/users", icon: Users, adminOnly: true },
-  { label: "Roles", href: "/admin/roles", icon: Shield, adminOnly: true },
-  { label: "Categories", href: "/admin/categories", icon: ListTree, adminOnly: true },
-
-  { label: "Dashboard", href: "/organizer", icon: LayoutDashboard, organizerOnly: true },
-  { label: "My Events", href: "/organizer/events", icon: Calendar, organizerOnly: true },
-  { label: "Transactions", href: "/organizer/transactions", icon: Receipt, organizerOnly: true },
-];
-
 export function DashboardSidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   const location = useLocation();
   const user = useAuthStore((s) => s.user);
   const isAdmin = user?.roles?.some((r) => r.name === "super_admin") ?? false;
   const isOrg = user?.roles?.some((r) => r.name === "organizer") ?? false;
+  const { t } = useTranslation();
+
+  const navItems: NavItem[] = [
+    { label: t("dashboard.sidebar.dashboard"), href: "/admin", icon: LayoutDashboard, adminOnly: true },
+    { label: t("dashboard.sidebar.events"), href: "/admin/events", icon: Calendar, adminOnly: true },
+    { label: t("dashboard.sidebar.transactions"), href: "/admin/transactions", icon: Receipt, adminOnly: true },
+    { label: t("dashboard.sidebar.users"), href: "/admin/users", icon: Users, adminOnly: true },
+    { label: t("dashboard.sidebar.roles"), href: "/admin/roles", icon: Shield, adminOnly: true },
+    { label: t("dashboard.sidebar.categories"), href: "/admin/categories", icon: ListTree, adminOnly: true },
+
+    { label: t("dashboard.sidebar.dashboard"), href: "/organizer", icon: LayoutDashboard, organizerOnly: true },
+    { label: t("dashboard.sidebar.myEvents"), href: "/organizer/events", icon: Calendar, organizerOnly: true },
+    { label: t("dashboard.sidebar.transactions"), href: "/organizer/transactions", icon: Receipt, organizerOnly: true },
+  ];
 
   const items = navItems.filter((i) => {
     if (i.adminOnly) return isAdmin;

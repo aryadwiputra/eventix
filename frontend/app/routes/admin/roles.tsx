@@ -5,8 +5,10 @@ import { Badge } from "~/components/ui/badge";
 import { Pencil, Plus } from "lucide-react";
 import api from "~/lib/api";
 import { useAuthStore } from "~/stores/auth";
+import { useTranslation } from "react-i18next";
 
 export default function AdminRoles() {
+  const { t } = useTranslation();
   const token = useAuthStore((s) => s.token);
   const [roles, setRoles] = useState<any[]>([]);
   const [permissions, setPermissions] = useState<any[]>([]);
@@ -34,8 +36,8 @@ export default function AdminRoles() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Roles</h1>
-        <p className="text-iron-grey text-sm mt-1">Manage roles and their permissions</p>
+        <h1 className="text-2xl font-bold">{t("admin.roles.title")}</h1>
+        <p className="text-iron-grey text-sm mt-1">{t("admin.roles.subtitle")}</p>
       </div>
 
       <Card className="bg-primary border-bluish-purple overflow-hidden">
@@ -43,9 +45,9 @@ export default function AdminRoles() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-bluish-purple text-left text-iron-grey">
-                <th className="p-4 font-medium">Role</th>
-                <th className="p-4 font-medium">Permissions</th>
-                <th className="p-4 font-medium text-right">Actions</th>
+                <th className="p-4 font-medium">{t("admin.roles.role")}</th>
+                <th className="p-4 font-medium">{t("admin.roles.permissions")}</th>
+                <th className="p-4 font-medium text-right">{t("admin.roles.actions")}</th>
               </tr>
             </thead>
             <tbody>
@@ -78,7 +80,7 @@ export default function AdminRoles() {
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div className="fixed inset-0 bg-black/50" onClick={() => setEditing(null)} />
           <div className="relative bg-primary border border-bluish-purple rounded-2xl p-6 w-full max-w-lg mx-4 max-h-[80vh] overflow-y-auto">
-            <h2 className="text-lg font-bold mb-4 capitalize">{editing.name} — Permissions</h2>
+            <h2 className="text-lg font-bold mb-4 capitalize">{t("admin.roles.dialogTitle", { name: editing.name })}</h2>
             <div className="grid grid-cols-2 gap-2">
               {permissions.map((p: any) => (
                 <label key={p.id} className="flex items-center gap-2 p-2 rounded-lg hover:bg-bluish-purple/50 cursor-pointer">
@@ -95,8 +97,8 @@ export default function AdminRoles() {
               ))}
             </div>
             <div className="flex justify-end gap-3 mt-6">
-              <Button variant="outline" onClick={() => setEditing(null)}>Cancel</Button>
-              <Button onClick={saveRole}>Save</Button>
+              <Button variant="outline" onClick={() => setEditing(null)}>{t("admin.roles.cancel")}</Button>
+              <Button onClick={saveRole}>{t("admin.roles.save")}</Button>
             </div>
           </div>
         </div>

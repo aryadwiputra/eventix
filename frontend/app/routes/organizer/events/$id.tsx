@@ -5,8 +5,10 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { ArrowLeft } from "lucide-react";
 import api from "~/lib/api";
+import { useTranslation } from "react-i18next";
 
 export default function EditEvent() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const [cats, setCats] = useState<any[]>([]);
@@ -43,18 +45,18 @@ export default function EditEvent() {
     } catch { setSubmitting(false); }
   };
 
-  if (loading) return <div className="text-iron-grey">Loading...</div>;
-  if (!form.name && form.name !== "") return <div className="text-iron-grey">Event not found</div>;
+  if (loading) return <div className="text-iron-grey">{t("common.loading")}</div>;
+  if (!form.name && form.name !== "") return <div className="text-iron-grey">{t("common.noData")}</div>;
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <button onClick={() => navigate("/organizer/events")} className="inline-flex items-center gap-2 text-iron-grey hover:text-white transition-colors text-sm">
-        <ArrowLeft className="w-4 h-4" /> Back to Events
+        <ArrowLeft className="w-4 h-4" /> {t("organizer.editEvent.back")}
       </button>
 
       <div>
-        <h1 className="text-2xl font-bold">Edit Event</h1>
-        <p className="text-iron-grey text-sm mt-1">Update your event details</p>
+        <h1 className="text-2xl font-bold">{t("organizer.editEvent.title")}</h1>
+        <p className="text-iron-grey text-sm mt-1">{t("organizer.editEvent.subtitle")}</p>
       </div>
 
       <Card className="bg-primary border-bluish-purple">
@@ -65,46 +67,46 @@ export default function EditEvent() {
               onChange={(e) => setForm({ ...form, status: e.target.value })}
               className="rounded-xl bg-primary border border-bluish-purple px-4 py-3 text-sm text-white focus:border-secondary focus:outline-none"
             >
-              <option value="draft">Draft</option>
-              <option value="published">Published</option>
-              <option value="cancelled">Cancelled</option>
+              <option value="draft">{t("common.status.draft")}</option>
+              <option value="published">{t("common.status.published")}</option>
+              <option value="cancelled">{t("common.status.cancelled")}</option>
             </select>
           </div>
-          <Input placeholder="Event name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
-          <Input placeholder="Headline" value={form.headline} onChange={(e) => setForm({ ...form, headline: e.target.value })} />
+          <Input placeholder={t("organizer.editEvent.name")} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
+          <Input placeholder={t("organizer.editEvent.headline")} value={form.headline} onChange={(e) => setForm({ ...form, headline: e.target.value })} />
           <textarea
-            placeholder="Description"
+            placeholder={t("organizer.editEvent.description")}
             value={form.description}
             onChange={(e) => setForm({ ...form, description: e.target.value })}
             className="w-full rounded-2xl bg-primary border-2 border-transparent px-5 py-3 text-white placeholder:text-smoke-purple focus:border-persian-pink focus:outline-none transition-colors min-h-[120px] resize-y"
           />
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-xs text-iron-grey mb-1 block">Type</label>
+              <label className="text-xs text-iron-grey mb-1 block">{t("organizer.editEvent.type")}</label>
               <select value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}
                 className="w-full rounded-xl bg-primary border border-bluish-purple px-4 py-3 text-sm text-white focus:border-secondary focus:outline-none">
-                <option value="offline">Offline</option>
-                <option value="online">Online</option>
+                <option value="offline">{t("common.type.offline")}</option>
+                <option value="online">{t("common.type.online")}</option>
               </select>
             </div>
             <div>
-              <label className="text-xs text-iron-grey mb-1 block">Category</label>
+              <label className="text-xs text-iron-grey mb-1 block">{t("organizer.editEvent.category")}</label>
               <select value={form.category_id} onChange={(e) => setForm({ ...form, category_id: e.target.value })}
                 className="w-full rounded-xl bg-primary border border-bluish-purple px-4 py-3 text-sm text-white focus:border-secondary focus:outline-none">
-                <option value="">No category</option>
+                <option value="">{t("organizer.editEvent.noCategory")}</option>
                 {cats.map((c: any) => <option key={c.id} value={c.id}>{c.name}</option>)}
               </select>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <Input type="datetime-local" value={form.start_time} onChange={(e) => setForm({ ...form, start_time: e.target.value })} required />
-            <Input type="datetime-local" value={form.end_time} onChange={(e) => setForm({ ...form, end_time: e.target.value })} />
+            <Input type="datetime-local" placeholder={t("organizer.editEvent.startTime")} value={form.start_time} onChange={(e) => setForm({ ...form, start_time: e.target.value })} required />
+            <Input type="datetime-local" placeholder={t("organizer.editEvent.endTime")} value={form.end_time} onChange={(e) => setForm({ ...form, end_time: e.target.value })} />
           </div>
-          {form.type === "offline" && <Input placeholder="Location" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} required />}
-          {form.type === "online" && <Input placeholder="Meeting link" value={form.meeting_link} onChange={(e) => setForm({ ...form, meeting_link: e.target.value })} required />}
+          {form.type === "offline" && <Input placeholder={t("organizer.editEvent.location")} value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} required />}
+          {form.type === "online" && <Input placeholder={t("organizer.editEvent.meetingLink")} value={form.meeting_link} onChange={(e) => setForm({ ...form, meeting_link: e.target.value })} required />}
           <div className="flex justify-end gap-3 pt-2">
-            <Button type="button" variant="outline" onClick={() => navigate("/organizer/events")}>Cancel</Button>
-            <Button type="submit" disabled={submitting}>{submitting ? "Saving..." : "Save Changes"}</Button>
+            <Button type="button" variant="outline" onClick={() => navigate("/organizer/events")}>{t("organizer.editEvent.cancel")}</Button>
+            <Button type="submit" disabled={submitting}>{submitting ? t("organizer.editEvent.submitting") : t("organizer.editEvent.submit")}</Button>
           </div>
         </form>
       </Card>

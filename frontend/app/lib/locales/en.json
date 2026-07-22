@@ -1,0 +1,401 @@
+{
+  "nav": {
+    "brand": "Eventix",
+    "events": "Events",
+    "myTickets": "My Tickets",
+    "signIn": "Sign In",
+    "signOut": "Sign Out"
+  },
+  "footer": {
+    "tagline": "Your go-to platform for discovering and booking amazing events.",
+    "events": "Events",
+    "browseEvents": "Browse Events",
+    "account": "Account",
+    "signIn": "Sign In",
+    "register": "Register",
+    "legal": "Legal",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "copyright": "© {{year}} Eventix. All rights reserved."
+  },
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "add": "Add",
+    "back": "Back",
+    "viewAll": "View All",
+    "search": "Search",
+    "noData": "No data",
+    "confirmDelete": "Are you sure?",
+    "confirmDeleteItem": "Delete {{item}}?",
+    "confirm": "Confirm",
+    "active": "Active",
+    "inactive": "Inactive",
+    "status": {
+      "paid": "Paid",
+      "pending": "Pending",
+      "expired": "Expired",
+      "cancelled": "Cancelled",
+      "failed": "Failed",
+      "draft": "Draft",
+      "published": "Published"
+    },
+    "type": {
+      "offline": "Offline",
+      "online": "Online"
+    }
+  },
+  "landing": {
+    "hero": {
+      "badge": "Popular Events",
+      "titleBefore": "Discover",
+      "titleHighlight": "Amazing",
+      "titleAfter": "Events Near You",
+      "subtitle": "Your go-to platform for discovering and booking the best events. From concerts to conferences — we've got you covered.",
+      "exploreEvents": "Explore Events",
+      "signUpFree": "Sign Up Free",
+      "cardTitle": "Your Next Event",
+      "cardSubtitle": "Secure your spot today!"
+    },
+    "events": {
+      "titleBefore": "Big",
+      "titleHighlight": "Events",
+      "titleAfter": ", Coming Soon"
+    },
+    "features": {
+      "titleBefore": "Why Choose",
+      "titleHighlight": "Eventix?",
+      "easyBookingTitle": "Easy Booking",
+      "easyBookingDesc": "Browse and book tickets in seconds with our streamlined checkout flow.",
+      "securePaymentTitle": "Secure Payment",
+      "securePaymentDesc": "Your payments are protected with Midtrans — VA, QRIS, and more.",
+      "qrCheckinTitle": "QR Check-in",
+      "qrCheckinDesc": "Instant check-in with scannable QR codes. No paper tickets needed."
+    },
+    "howItWorks": {
+      "titleBefore": "How It",
+      "titleHighlight": "Works",
+      "step1Title": "Browse Events",
+      "step1Desc": "Discover concerts, workshops, festivals, and more.",
+      "step2Title": "Secure Checkout",
+      "step2Desc": "Pick your tickets, fill in details, and pay securely.",
+      "step3Title": "Attend & Enjoy",
+      "step3Desc": "Show your QR code at the door and enjoy the experience."
+    },
+    "categories": {
+      "titleBefore": "Browse by",
+      "titleHighlight": "Category",
+      "count": "{{count}} events"
+    },
+    "cta": {
+      "titleBefore": "Ready to",
+      "titleHighlight": "Discover?",
+      "subtitle": "Join thousands of attendees finding their next unforgettable experience.",
+      "browseEvents": "Browse Events Now"
+    }
+  },
+  "event": {
+    "popular": "Popular Event",
+    "infoDate": "Date",
+    "infoTime": "Time",
+    "infoLocation": "Location",
+    "infoType": "Type",
+    "aboutTitle": "About",
+    "aboutHighlight": "This Event",
+    "organizedBy": "Organized by",
+    "online": "Online",
+    "tickets": {
+      "choose": "Choose Tickets",
+      "none": "No tickets available.",
+      "left": "{{count}} left",
+      "selected": "Selected",
+      "total": "Total",
+      "book": "Book Tickets Now",
+      "ticket": "ticket",
+      "tickets": "tickets"
+    },
+    "notFound": "Event Not Found",
+    "backHome": "Back to Home",
+    "backToEvents": "Back to Events"
+  },
+  "checkout": {
+    "backToEvent": "Back to Event",
+    "eventLabel": "Event",
+    "yourInfo": "Your Information",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "pay": "Pay Rp {{amount}}",
+    "processing": "Processing...",
+    "orderSummary": "Order Summary",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "securedBy": "Secured by Midtrans. Your payment info is encrypted.",
+    "failed": "Checkout failed. Please try again.",
+    "error": "Checkout failed"
+  },
+  "checkoutSuccess": {
+    "title": "Order Created!",
+    "subtitle": "We've received your order. Complete your payment before the deadline.",
+    "transaction": "Transaction",
+    "event": "Event",
+    "name": "Name",
+    "total": "Total",
+    "payBefore": "Pay before",
+    "viewTickets": "View My Tickets",
+    "backHome": "Back to Home",
+    "notFound": "Transaction Not Found"
+  },
+  "tickets": {
+    "title": "My Tickets",
+    "emptyTitle": "No Tickets Yet",
+    "emptyDesc": "Explore events and grab your first ticket!",
+    "browseEvents": "Browse Events",
+    "used": "Used",
+    "active": "Active",
+    "detail": {
+      "back": "Back to My Tickets",
+      "ticketType": "Ticket Type",
+      "ticketCode": "Ticket Code",
+      "date": "Date",
+      "location": "Location",
+      "transaction": "Transaction",
+      "usedTitle": "Ticket Used",
+      "usedDesc": "Redeemed at {{time}}",
+      "activeTitle": "Active Ticket",
+      "activeDesc": "Show this QR code at the entrance",
+      "qrTitle": "Your QR Code",
+      "qrDesc": "Show this code to the event staff for check-in",
+      "viewEvent": "View Event Details"
+    },
+    "notFound": "Ticket Not Found",
+    "back": "Back to My Tickets"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In to Eventix",
+      "email": "Email address",
+      "password": "Password",
+      "submit": "Sign In",
+      "submitting": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "register": "Register",
+      "failed": "Login failed"
+    },
+    "register": {
+      "title": "Create Your Account",
+      "name": "Full name",
+      "email": "Email address",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "submit": "Create Account",
+      "submitting": "Creating account...",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign In",
+      "failed": "Registration failed"
+    }
+  },
+  "dashboard": {
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "events": "Events",
+      "transactions": "Transactions",
+      "users": "Users",
+      "roles": "Roles",
+      "categories": "Categories",
+      "myEvents": "My Events",
+      "adminLabel": "Admin"
+    }
+  },
+  "admin": {
+    "overview": {
+      "title": "Admin Dashboard",
+      "subtitle": "Overview of all activity",
+      "totalRevenue": "Total Revenue",
+      "events": "Events",
+      "users": "Users",
+      "transactions": "Transactions",
+      "recentTransactions": "Recent Transactions",
+      "viewAll": "View All",
+      "noData": "No transactions yet"
+    },
+    "users": {
+      "title": "Users",
+      "subtitle": "Manage all user accounts",
+      "search": "Search by name or email...",
+      "name": "Name",
+      "email": "Email",
+      "roles": "Roles",
+      "created": "Created",
+      "actions": "Actions",
+      "noData": "No users found",
+      "deleteConfirm": "Delete this user?"
+    },
+    "roles": {
+      "title": "Roles",
+      "subtitle": "Manage roles and their permissions",
+      "role": "Role",
+      "permissions": "Permissions",
+      "actions": "Actions",
+      "dialogTitle": "{{name}} — Permissions",
+      "cancel": "Cancel",
+      "save": "Save"
+    },
+    "categories": {
+      "title": "Categories",
+      "subtitle": "Manage event categories",
+      "add": "Add",
+      "name": "Name",
+      "icon": "Icon",
+      "active": "Active",
+      "actions": "Actions",
+      "noData": "No categories",
+      "dialogAdd": "Add Category",
+      "dialogEdit": "Edit Category",
+      "namePlaceholder": "Category name",
+      "iconPlaceholder": "Icon slug (optional)",
+      "descPlaceholder": "Description (optional)",
+      "cancel": "Cancel",
+      "save": "Save",
+      "deleteConfirm": "Delete this category?"
+    },
+    "transactions": {
+      "title": "Transactions",
+      "subtitle": "All transactions across events",
+      "all": "All Status",
+      "noData": "No transactions",
+      "code": "Code",
+      "name": "Name",
+      "event": "Event",
+      "amount": "Amount",
+      "status": "Status",
+      "date": "Date",
+      "actions": "Actions",
+      "approve": "Approve",
+      "expire": "Expire"
+    }
+  },
+  "organizer": {
+    "overview": {
+      "title": "Organizer Dashboard",
+      "subtitle": "Your events at a glance",
+      "totalRevenue": "Total Revenue",
+      "myEvents": "My Events",
+      "ticketsSold": "Tickets Sold",
+      "transactions": "Transactions",
+      "emptyTitle": "No events yet",
+      "emptyDesc": "Create your first event to get started",
+      "createEvent": "Create Event"
+    },
+    "events": {
+      "title": "My Events",
+      "subtitle": "Manage your events",
+      "createEvent": "Create Event",
+      "name": "Name",
+      "type": "Type",
+      "status": "Status",
+      "date": "Date",
+      "actions": "Actions",
+      "noData": "No events yet",
+      "deleteConfirm": "Delete this event?"
+    },
+    "createEvent": {
+      "title": "Create Event",
+      "subtitle": "Fill in the details for your new event",
+      "back": "Back to Events",
+      "name": "Event name *",
+      "headline": "Headline (optional)",
+      "description": "Description (optional)",
+      "type": "Type",
+      "category": "Category",
+      "noCategory": "No category",
+      "startTime": "Start time *",
+      "endTime": "End time",
+      "location": "Location *",
+      "meetingLink": "Meeting link *",
+      "cancel": "Cancel",
+      "submit": "Create Event",
+      "submitting": "Creating..."
+    },
+    "editEvent": {
+      "title": "Edit Event",
+      "subtitle": "Update your event details",
+      "back": "Back to Events",
+      "name": "Event name",
+      "headline": "Headline",
+      "description": "Description",
+      "type": "Type",
+      "category": "Category",
+      "noCategory": "No category",
+      "startTime": "Start time",
+      "endTime": "End time",
+      "location": "Location",
+      "meetingLink": "Meeting link",
+      "cancel": "Cancel",
+      "submit": "Save Changes",
+      "submitting": "Saving..."
+    },
+    "tickets": {
+      "title": "Manage ticket types",
+      "addTicket": "Add Ticket",
+      "name": "Name",
+      "price": "Price",
+      "qty": "Qty",
+      "sold": "Sold",
+      "activeCol": "Active",
+      "actions": "Actions",
+      "noData": "No tickets yet",
+      "back": "Back to Events",
+      "dialogAdd": "Add Ticket",
+      "dialogEdit": "Edit Ticket",
+      "dialogName": "Ticket name *",
+      "dialogDesc": "Description",
+      "dialogPrice": "Price *",
+      "dialogQty": "Quantity *",
+      "dialogMax": "Max per transaction (default: 10)",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "deleteConfirm": "Delete this ticket type?"
+    },
+    "transactions": {
+      "title": "Transactions",
+      "subtitle": "Your event transactions",
+      "code": "Code",
+      "name": "Name",
+      "event": "Event",
+      "amount": "Amount",
+      "status": "Status",
+      "date": "Date",
+      "noData": "No transactions"
+    }
+  },
+  "eventCard": {
+    "popular": "Popular",
+    "viewDetails": "View Details"
+  },
+  "categoryCard": {
+    "events": "{{count}} events"
+  },
+  "validation": {
+    "invalidEmail": "Invalid email",
+    "passwordRequired": "Password is required",
+    "nameMin": "Name must be at least 3 characters",
+    "passwordMin": "Password must be at least 8 characters",
+    "passwordsNoMatch": "Passwords do not match",
+    "nameMinCheckout": "Min 3 characters",
+    "phoneMin": "Min 10 digits",
+    "phoneMax": "Max 15 digits"
+  },
+  "error": {
+    "notFound": "Not Found",
+    "generic": "An unexpected error occurred.",
+    "pageNotFound": "The requested page could not be found.",
+    "default": "Oops!"
+  }
+}
