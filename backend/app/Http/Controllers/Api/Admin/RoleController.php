@@ -27,7 +27,10 @@ class RoleController extends Controller
 
     public function store(StoreRoleRequest $request): JsonResponse
     {
-        $role = Role::create($request->safe()->except('permission_ids'));
+        $data = $request->safe()->except('permission_ids');
+        $data['guard_name'] ??= 'api';
+
+        $role = Role::create($data);
 
         if ($request->has('permission_ids')) {
             $role->permissions()->sync($request->permission_ids);
