@@ -6,6 +6,8 @@ export default [
     route("events/:eventId", "routes/events.$eventId.tsx"),
     route("checkout/:eventId", "routes/checkout.$eventId.tsx"),
     route("checkout/success/:code", "routes/checkout.success.$code.tsx"),
+    route("dashboard/tickets", "routes/dashboard.tickets.tsx"),
+    route("dashboard/tickets/:code", "routes/dashboard.tickets.$code.tsx"),
     route("auth/login", "routes/auth/login.tsx"),
     route("auth/register", "routes/auth/register.tsx"),
   ]),
